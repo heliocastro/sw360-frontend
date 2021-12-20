@@ -61,5 +61,5 @@
 		},
 		"prettier-eslint.eslintIntegration": true
 	},
-	"remoteUser": "user"
+	"remoteUser": "devel"
 }
