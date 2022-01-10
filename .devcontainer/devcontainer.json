@@ -1,0 +1,65 @@
+{
+	"name": "sw360-frontend",
+	"image": "ghcr.io/heliocastro/node",
+	"forwardPorts": [
+		3000,
+		35729
+	],
+	"runArgs": [
+		"--hostname",
+		"${localWorkspaceFolderBasename}"
+	],
+	"extensions": [
+		"bierner.color-info", // JSX and CSS color information
+		"christian-kohler.npm-intellisense", // Autocompletes npm modules in import statements
+		"cssho.vscode-svgviewer", // SVG viewer
+		"davidanson.vscode-markdownlint",
+		"dbaeumer.vscode-eslint", // ESLint
+		"eamodio.gitlens", // IDE Git information
+		"eg2.vscode-npm-script", // NPM support for VS code
+		"esbenp.prettier-vscode", // Prettier code formatter
+		"Gruntfuggly.todo-tree", // Highlights TODO comments
+		"IBM.output-colorizer", // Colorize your output/test logs
+		"jpoissonnier.vscode-styled-components", // Styled components
+		"ms-azuretools.vscode-docker", // Docker integration and linting
+		"shardulm94.trailing-spaces", // Show trailing spaces
+		"stkb.rewrap", // rewrap comments after n characters on one line
+		"svelte.svelte-vscode", // Svelte default
+		"visualstudioexptteam.vscodeintellicode" // AI-assisted development
+	],
+	"settings": {
+		"files.eol": "\n",
+		"editor.tabSize": 4,
+		"remote.extensionKind": {
+			"ms-azuretools.vscode-docker": "workspace"
+		},
+		"editor.codeActionsOnSave": {
+			"source.fixAll.eslint": true
+		},
+		"eslint.validate": [
+			"javascript",
+			"javascriptreact",
+			"typescript",
+			"typescriptreact"
+		],
+		"editor.formatOnSave": true,
+		"[javascript]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+			"editor.formatOnSave": false
+		},
+		"[javascriptreact]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+			"editor.formatOnSave": false
+		},
+		"[typescript]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+			"editor.formatOnSave": false
+		},
+		"[typescriptreact]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+			"editor.formatOnSave": false
+		},
+		"prettier-eslint.eslintIntegration": true
+	},
+	"remoteUser": "user"
+}
