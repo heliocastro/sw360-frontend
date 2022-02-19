@@ -1,2 +1,22 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script context="module" lang="ts">
+	export const prerender = true;
+	import { page, session } from '$app/stores';
+
+	let isLogin = false;
+
+	export async function load({ session }) {
+		if (!session.user) {
+			return {
+				status: 302,
+				redirect: '/login'
+			};
+		}
+		return {};
+	}
+
+</script>
+
+<svelte:head>
+	<title>SW360</title>
+</svelte:head>
+
