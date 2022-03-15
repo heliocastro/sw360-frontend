@@ -1,8 +1,5 @@
-<script context="module" lang="ts">
+<script context="module">
 	export const prerender = true;
-	import { page, session } from '$app/stores';
-
-	let isLogin = false;
 
 	export async function load({ session }) {
 		if (!session.user) {
@@ -13,10 +10,8 @@
 		}
 		return {};
 	}
-
 </script>
 
 <svelte:head>
 	<title>SW360</title>
 </svelte:head>
-

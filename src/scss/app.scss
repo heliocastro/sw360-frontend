@@ -5,90 +5,93 @@
 @tailwind components;
 @tailwind utilities;
 :root {
-    --font-family-sans-serif: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-    --font-mono: 'Fira Mono', monospace;
-    --pure-white: #ffffff;
-    --primary-color: #ffffff;
-    --secondary-color: #d0dde9;
-    --tertiary-color: #edf0f8;
-    --accent-color: #ff3e00;
-    --heading-color: rgba(0, 0, 0, 0.7);
-    --text-color: #444444;
-    --background-without-opacity: rgba(255, 255, 255, 0.7);
-    --column-width: 42rem;
-    --column-margin-top: 4rem;
+	--font-family-sans-serif: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji',
+		'Segoe UI Emoji', 'Segoe UI Symbol';
+	--font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+		monospace;
+	--font-mono: 'Fira Mono', monospace;
+	--pure-white: #ffffff;
+	--primary-color: #ffffff;
+	--secondary-color: #d0dde9;
+	--tertiary-color: #edf0f8;
+	--accent-color: #f7941e;
+	--heading-color: rgba(0, 0, 0, 0.7);
+	--text-color: #444444;
+	--background-without-opacity: rgba(255, 255, 255, 0.7);
+	--column-width: 42rem;
+	--column-margin-top: 4rem;
 }
 
 body {
-    min-height: 100vh;
-    margin: 0;
-    background-color: var(--primary-color);
+	min-height: 100vh;
+	margin: 0;
+	background-color: var(--primary-color);
 }
 
 #svelte {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 
 h1,
 h2,
 p {
-    font-weight: 400;
-    color: var(--heading-color);
+	font-weight: 400;
+	color: var(--heading-color);
 }
 
 p {
-    line-height: 1.5;
+	line-height: 1.5;
 }
 
 a {
-    color: var(--accent-color);
-    text-decoration: none;
+	color: var(--accent-color);
+	text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+	text-decoration: none;
 }
 
 h1 {
-    font-size: 2rem;
-    text-align: center;
+	font-size: 2rem;
+	text-align: center;
 }
 
 h2 {
-    font-size: 1rem;
+	font-size: 1rem;
 }
 
 pre {
-    font-size: 16px;
-    font-family: var(--font-mono);
-    background-color: rgba(255, 255, 255, 0.45);
-    border-radius: 3px;
-    box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
-    padding: 0.5em;
-    overflow-x: auto;
-    color: var(--text-color);
+	font-size: 16px;
+	font-family: var(--font-mono);
+	background-color: rgba(255, 255, 255, 0.45);
+	border-radius: 3px;
+	box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
+	padding: 0.5em;
+	overflow-x: auto;
+	color: var(--text-color);
 }
 
 div {
-    font-family: var(--font-family-sans-serif);
+	font-family: var(--font-family-sans-serif);
 }
 
 button:focus:not(:focus-visible) {
-    outline: none;
+	outline: none;
 }
 
 @media (min-width: 720px) {
-    h1 {
-        font-size: 2.4rem;
-    }
+	h1 {
+		font-size: 2.4rem;
+	}
 }
 
 @layer utilities {
-    div {
-        @apply antialiased;
-        font-family: var(--font-family-sans-serif);
-    }
+	div {
+		@apply antialiased;
+		font-family: var(--font-family-sans-serif);
+	}
 }

@@ -116,7 +116,7 @@ input.gridjs-input:focus {
 .gridjs-pagination .gridjs-pages button.gridjs-spread {
 	cursor: default;
 	box-shadow: none;
-	background-color: #5f5;
+	background-color: #fff;
 }
 .gridjs-pagination .gridjs-pages button.gridjs-currentPage {
 	background-color: #f7f7f7;

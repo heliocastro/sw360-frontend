@@ -1,4 +1,4 @@
-const base = 'https://citadel:8080/resource/api';
+const base = 'http://citadel.universe:8080/resource/api';
 
 async function send({ method, path, data, token }) {
 	const opts = { method, headers: {} };
@@ -9,8 +9,9 @@ async function send({ method, path, data, token }) {
 	}
 
 	if (token) {
-		opts.headers['Authorization'] = `Token ${token}`;
+		opts.headers['Authorization'] = `Bearer ${token}`;
 	}
+
 
 	return fetch(`${base}/${path}`, opts)
 		.then((r) => r.text())
