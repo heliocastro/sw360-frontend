@@ -1,5 +1,5 @@
 # sw360-frontend
-This is the heavily experimental frontend proof of concept for sw360 frontend replacement and conntinuos development
+This is the heavily experimental frontend proof of concept for sw360 frontend replacement and continuos development
 
 The main goal is achieve at least all pages in read only mode and one edit/addition
 
