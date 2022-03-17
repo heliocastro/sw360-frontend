@@ -1,10 +1,10 @@
 import { respond } from "./_respond";
+import { SW360_API_URL } from "$lib/env";
 
 export async function post({ request }) {
 	const userdata = await request.json();
 
-	const sw360URL = 'http://citadel.universe:8080';
-	var url = new URL(sw360URL + '/authorization/client-management');
+	var url = new URL(SW360_API_URL + '/authorization/client-management');
 	var credentials = Buffer.from(`${userdata.email}:${userdata.password}`, 'binary').toString('base64');
 	var opts = { method: 'GET', headers: {} };
 
@@ -27,7 +27,7 @@ export async function post({ request }) {
 		'base64'
 	);
 	opts.headers['Authorization'] = `Basic ${credentials}`;
-	url = new URL(sw360URL + '/authorization/oauth/token');
+	url = new URL(SW360_API_URL + '/authorization/oauth/token');
 	var params = { grant_type: 'password', username: userdata.email, password: userdata.password };
 	url.search = new URLSearchParams(params).toString();
 

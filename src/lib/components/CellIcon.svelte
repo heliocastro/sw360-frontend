@@ -7,4 +7,4 @@
 	export let cell;
 </script>
 
-<Fa icon={faCheckCircle} color="green" />
+<Fa icon={faCheckCircle} color="green" class="center w-full" />

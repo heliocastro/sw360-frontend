@@ -41,6 +41,7 @@
 		"gridjs": "^5.0.2",
 		"gridjs-svelte": "^2.1.0",
 		"node-fetch": "^3.2.1",
-		"node-sass": "^7.0.1"
+		"node-sass": "^7.0.1",
+		"svelte-i18n": "^3.3.13"
 	}
 }

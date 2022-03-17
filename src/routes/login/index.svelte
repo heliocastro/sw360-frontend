@@ -17,9 +17,10 @@
 	import { goto } from '$app/navigation';
 	import { post } from '$lib/utils.js';
 	import ListErrors from '$lib/ListErrors.svelte';
+	import { SW360_DEV_EMAIL, SW360_DEV_PASSWORD, SW360_API_URL } from '$lib/env';
 
-	let email = 'helio@kde.org';
-	let password = 'genoma';
+	let email = SW360_DEV_EMAIL ? SW360_DEV_EMAIL : '';
+	let password = SW360_DEV_PASSWORD ? SW360_DEV_PASSWORD : '';
 	let errors = null;
 
 	async function submit(event) {

@@ -1,4 +1,6 @@
-const base = 'http://citadel.universe:8080/resource/api';
+import { SW360_API_URL } from "./env";
+
+const base = SW360_API_URL + '/resource/api';
 
 async function send({ method, path, data, token }) {
 	const opts = { method, headers: {} };
