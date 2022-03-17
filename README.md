@@ -1,38 +1,20 @@
-# create-svelte
+# sw360-frontend
+This is the heavily experimental frontend proof of concept for sw360 frontend replacement and conntinuos development
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+The main goal is achieve at least all pages in read only mode and one edit/addition
 
-## Creating a project
+## If you dare to try...
 
-If you're seeing this, you've probably already done this step. Congrats!
+* Install nodejs ( container, host, where you think is best for you )
+* Create a .env file on root with at least this entry: ```VITE_SW360_API_URL="<your sw360 url>"```
+* Do ```yarn install``` 
+* Do ```yarn dev```
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+Your frontend will be running in port 3000
 
-# create a new project in my-app
-npm init svelte@next my-app
-```
+## Good luck but....
 
-> Note: the `@next` is temporary
+Please contact me anytime here that i appreciate any input and idea exchanges or even see a quick demo
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
-
-```bash
-npm run build
-```
-
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+## Disclaimer
+**I'm not a web developer** ( Or at least i wasn't ) :-)
