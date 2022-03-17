@@ -1,6 +1,6 @@
 {
 	"name": "sw360-frontend",
-	"image": "ghcr.io/heliocastro/node",
+	"image": "ghcr.io/heliocastro/nodejs:latest",
 	"forwardPorts": [
 		3000,
 		35729
