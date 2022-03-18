@@ -19,4 +19,4 @@
 	import PageHeader from '$lib/components/PageHeader.svelte';
 </script>
 
-<PageHeader>Projects</PageHeader>
+<PageHeader>Components</PageHeader>
