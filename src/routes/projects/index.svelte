@@ -8,10 +8,15 @@
 				redirect: '/login'
 			};
 		}
-		return {};
+
+		return {
+			props: {}
+		};
 	}
 </script>
 
-<svelte:head>
-	<title>SW360</title>
-</svelte:head>
+<script>
+	import PageHeader from '$lib/components/PageHeader.svelte';
+</script>
+
+<PageHeader>Projects</PageHeader>

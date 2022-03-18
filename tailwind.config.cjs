@@ -10,6 +10,7 @@ module.exports = {
 				'sw360-paleorange': '#F9D1A2',
 				'sw360-navyblue': '#5D8EA9',
 				'sw360-paleblue': '#EBF0F5',
+				'sw360-headergray': '#30313F',
 			}
 		}
 	},
