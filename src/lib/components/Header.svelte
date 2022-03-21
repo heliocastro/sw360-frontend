@@ -1,9 +1,19 @@
 <script>
-	import { page, navigating, session } from '$app/stores';
+	import { page, session } from '$app/stores';
+	import { onMount, setContext } from 'svelte';
+	import { writable } from 'svelte/store';
 	import RadioHeaderButton from '$lib/components/RadioHeaderButton.svelte';
 
 	let src = '/images/sw360.png';
-	let options = 'Home';
+	let path;
+	export let visible = true;
+
+	function getPath(currentPath) {
+		path = currentPath;
+		console.log(path);
+	}
+
+	$: getPath($page.url.pathname);
 
 	async function logout() {
 		// this will trigger a redirect, because it
@@ -12,7 +22,7 @@
 	}
 </script>
 
-<header>
+<header class:visible>
 	<div class="grid grid-cols-2 pl-16 items-center">
 		<!-- <div class="py-6"> -->
 		<img class="py-6 w-36" id="sw360logo" {src} alt="SW360" />
@@ -31,19 +41,43 @@
 		<nav>
 			{#if $session.user}
 				<div class="flex items-left inline-flex gap-4" role="group">
-					<RadioHeaderButton label="Home" link="/" bind:options />
-					<RadioHeaderButton label="Projects" link="/projects" bind:options />
-					<RadioHeaderButton label="Components" link="/components" bind:options />
-					<RadioHeaderButton label="Licenses" link="/licenses" bind:options />
-					<RadioHeaderButton label="ECC" link="/ecc" bind:options />
-					<RadioHeaderButton label="Vulnerabilities" link="/vulnerabilities" bind:options />
-					<RadioHeaderButton label="Requests" link="/requests" bind:options />
-					<RadioHeaderButton label="Search" link="/search" bind:options />
-					<RadioHeaderButton label="Admin" link="/admin" bind:options />
-					<RadioHeaderButton label="Preferences" link="/preferences" bind:options />
+					<RadioHeaderButton label="Home" link="/" active={path === '/'} />
+					<RadioHeaderButton
+						label="Projects"
+						link="/projects"
+						active={path.startsWith('/projects')}
+					/>
+					<RadioHeaderButton
+						label="Components"
+						link="/components"
+						active={path.startsWith('/components')}
+					/>
+					<RadioHeaderButton
+						label="Licenses"
+						link="/licenses"
+						active={path.startsWith('/licenses')}
+					/>
+					<RadioHeaderButton label="ECC" link="/ecc" active={path.startsWith('/ecc')} />
+					<RadioHeaderButton
+						label="Vulnerabilities"
+						link="/vulnerabilities"
+						active={path.startsWith('/vulnerabilities')}
+					/>
+					<RadioHeaderButton
+						label="Requests"
+						link="/requests"
+						active={path.startsWith('/requests')}
+					/>
+					<RadioHeaderButton label="Search" link="/search" active={path.startsWith('/search')} />
+					<RadioHeaderButton label="Admin" link="/admin" active={path.startsWith('/admin')} />
+					<RadioHeaderButton
+						label="Preferences"
+						link="/preferences"
+						active={path.startsWith('/preferences')}
+					/>
 				</div>
 			{:else}
-				<RadioHeaderButton label="Welcome" link="/" bind:options />
+				<RadioHeaderButton label="Welcome" link="/" active={path === '/'} />
 			{/if}
 		</nav>
 	</div>

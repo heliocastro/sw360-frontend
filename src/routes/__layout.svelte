@@ -8,7 +8,7 @@
 <div class="flex flex-col h-screen">
 	<Header />
 
-	<main>
+	<main class="flex-grow">
 		<slot />
 	</main>
 

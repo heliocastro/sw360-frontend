@@ -17,6 +17,7 @@
 	import { goto } from '$app/navigation';
 	import { post } from '$lib/utils.js';
 	import ListErrors from '$lib/ListErrors.svelte';
+	import PageHeader from '$lib/components/PageHeader.svelte';
 	import { SW360_DEV_EMAIL, SW360_DEV_PASSWORD, SW360_API_URL } from '$lib/env';
 
 	let email = SW360_DEV_EMAIL ? SW360_DEV_EMAIL : '';
@@ -33,6 +34,7 @@
 	}
 </script>
 
+<PageHeader>Login</PageHeader>
 <div>
 	<div class="mx-14 my-20 rounded-md p-7 bg-gray-100">
 		<div class="text-4xl mt-7 mb-5">Welcome to SW360!</div>

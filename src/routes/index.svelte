@@ -12,6 +12,8 @@
 	}
 </script>
 
-<svelte:head>
-	<title>SW360</title>
-</svelte:head>
+<script>
+	import PageHeader from '$lib/components/PageHeader.svelte';
+</script>
+
+<PageHeader>Home</PageHeader>

@@ -24,7 +24,7 @@
 		"prettier": "^2.4.1",
 		"prettier-plugin-svelte": "^2.4.0",
 		"request": "^2.88.2",
-		"sass": "^1.49.8",
+		"sass": "^1.49.9",
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.2.6",
 		"svelte-fa": "^2.4.0",
