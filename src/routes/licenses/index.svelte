@@ -28,7 +28,6 @@
 	import Grid from 'gridjs-svelte';
 	import CellIcon from '$lib/components/CellIcon.svelte';
 	import { SvelteWrapper } from 'gridjs-svelte/plugins';
-	import Button from '$lib/components/Button.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 
 	const getLastItem = (thePath) => thePath.substring(thePath.lastIndexOf('/') + 1);
@@ -39,12 +38,6 @@
 		{
 			name: 'Shortname',
 			formatter: (cell) => html(`<a href='/licenses/${cell}'>${cell}</a>`)
-			// plugin: {
-			// 	component: SvelteWrapper,
-			// 	props: {
-			// 		component: CellLink
-			// 	}
-			// }
 		},
 		'License Fullname',
 		{
@@ -72,11 +65,7 @@
 
 <div class="grid grid-cols-6 pl-16 pr-16 pt-4 pb-8 gap-8">
 	<div class="rounded border h-1/5">
-		<div
-			class="text-left px-4 py-3 w-full bg-sw360-navyblue rounded-t text-white text-base font-bold"
-		>
-			Quick Filter
-		</div>
+		<div class="sw360-navy-header">Quick Filter</div>
 
 		<div class="bg-sw360-paleblue flex h-24 justify-center items-center">
 			<input
@@ -90,7 +79,7 @@
 
 	<div class="col-span-5 grid grid-cols-2">
 		<div class="pb-6 justify-self-start">
-			<Button label="Add License" />
+			<button class="sw360-button">Add License</button>
 		</div>
 		<div class="text-right text-2xl text-sw360-grey">LICENSES: ({totallic})</div>
 		<div class="col-span-2">

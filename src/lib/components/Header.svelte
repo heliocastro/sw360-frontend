@@ -2,7 +2,8 @@
 	import { page, session } from '$app/stores';
 	import { onMount, setContext } from 'svelte';
 	import { writable } from 'svelte/store';
-	import RadioHeaderButton from '$lib/components/RadioHeaderButton.svelte';
+	import NavItem from '$lib/components/NavItem.svelte';
+	import NavItemDropdown from '$lib/components/NavItemDropdown.svelte';
 
 	let src = '/images/sw360.png';
 	let path;
@@ -10,7 +11,6 @@
 
 	function getPath(currentPath) {
 		path = currentPath;
-		console.log(path);
 	}
 
 	$: getPath($page.url.pathname);
@@ -41,43 +41,27 @@
 		<nav>
 			{#if $session.user}
 				<div class="flex items-left inline-flex gap-4" role="group">
-					<RadioHeaderButton label="Home" link="/" active={path === '/'} />
-					<RadioHeaderButton
-						label="Projects"
-						link="/projects"
-						active={path.startsWith('/projects')}
-					/>
-					<RadioHeaderButton
-						label="Components"
-						link="/components"
-						active={path.startsWith('/components')}
-					/>
-					<RadioHeaderButton
-						label="Licenses"
-						link="/licenses"
-						active={path.startsWith('/licenses')}
-					/>
-					<RadioHeaderButton label="ECC" link="/ecc" active={path.startsWith('/ecc')} />
-					<RadioHeaderButton
+					<NavItem label="Home" link="/" active={path === '/'} />
+					<NavItem label="Projects" link="/projects" active={path.startsWith('/projects')} />
+					<NavItem label="Components" link="/components" active={path.startsWith('/components')} />
+					<NavItem label="Licenses" link="/licenses" active={path.startsWith('/licenses')} />
+					<NavItem label="ECC" link="/ecc" active={path.startsWith('/ecc')} />
+					<NavItem
 						label="Vulnerabilities"
 						link="/vulnerabilities"
 						active={path.startsWith('/vulnerabilities')}
 					/>
-					<RadioHeaderButton
-						label="Requests"
-						link="/requests"
-						active={path.startsWith('/requests')}
-					/>
-					<RadioHeaderButton label="Search" link="/search" active={path.startsWith('/search')} />
-					<RadioHeaderButton label="Admin" link="/admin" active={path.startsWith('/admin')} />
-					<RadioHeaderButton
+					<NavItem label="Requests" link="/requests" active={path.startsWith('/requests')} />
+					<NavItem label="Search" link="/search" active={path.startsWith('/search')} />
+					<NavItemDropdown label="Admin" link="/admin" active={path.startsWith('/admin')} />
+					<NavItem
 						label="Preferences"
 						link="/preferences"
 						active={path.startsWith('/preferences')}
 					/>
 				</div>
 			{:else}
-				<RadioHeaderButton label="Welcome" link="/" active={path === '/'} />
+				<NavItem label="Welcome" link="/" active={path === '/'} />
 			{/if}
 		</nav>
 	</div>

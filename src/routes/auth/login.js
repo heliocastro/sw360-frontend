@@ -41,6 +41,5 @@ export async function post({ request }) {
 			}
 		});
 
-	const user = {"user": sw360token}
-	return respond(user)
+	return respond(sw360token)
 }

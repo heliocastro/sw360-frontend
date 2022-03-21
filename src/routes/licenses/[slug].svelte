@@ -1,5 +1,4 @@
 <script>
-	import Button from '$lib/components/Button.svelte';
 	import RadioButton from '$lib/components/RadioButton.svelte';
 	import LicenseCell from '$lib/components/LicenseCell.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
@@ -18,21 +17,21 @@
 	let options = 'Details';
 </script>
 
-<PageHeader>Licenses > <span class="text-black">{license.shortName}</span></PageHeader>
+<PageHeader child={license.shortName}>Licenses</PageHeader>
 
 <div class="grid grid-cols-6 pl-16 pr-16 pt-4 pb-8 gap-8">
 	<div>
 		<div>
 			<div class="grid grid-cols-1 bg-white border border-gray-200 rounded w-full text-gray-500">
-				<RadioButton label="Details" bind:options />
-				<RadioButton label="Text" bind:options />
-				<RadioButton label="Obligations" bind:options />
+				<RadioButton value="Details" bind:options>Details</RadioButton>
+				<RadioButton value="Text" bind:options>Text</RadioButton>
+				<RadioButton value="Obligations" bind:options>Obligations</RadioButton>
 			</div>
 		</div>
 	</div>
 
 	<div class="col-span-5 grid grid-cols-3 gap-8">
-		<div><Button label="Edit License" /></div>
+		<div><button class="sw360-button">Edit License</button></div>
 		<div class="col-span-2 text-right uppercase text-2xl text-sw360-grey">
 			{license.fullName} ({license.shortName})
 		</div>

@@ -29,6 +29,7 @@
 
 		if (response.user) {
 			$session.user = response.user;
+			$session.username = email;
 			goto('/');
 		}
 	}
