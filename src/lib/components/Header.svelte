@@ -1,9 +1,8 @@
 <script>
 	import { page, session } from '$app/stores';
-	import { onMount, setContext } from 'svelte';
-	import { writable } from 'svelte/store';
 	import NavItem from '$lib/components/NavItem.svelte';
 	import NavItemDropdown from '$lib/components/NavItemDropdown.svelte';
+	import { post } from '$lib/utils.js';
 
 	let src = '/images/sw360.png';
 	let path;
@@ -16,8 +15,7 @@
 	$: getPath($page.url.pathname);
 
 	async function logout() {
-		// this will trigger a redirect, because it
-		// causes the `load` function to run again
+		await post(`/auth/logout`);
 		$session.user = null;
 	}
 </script>

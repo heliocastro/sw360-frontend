@@ -1,11 +1,13 @@
-import { respond } from "./_respond";
-import { SW360_API_URL } from "$lib/env";
+import { respond } from './_respond';
+import { SW360_API_URL } from '$lib/env';
 
 export async function post({ request }) {
 	const userdata = await request.json();
 
 	var url = new URL(SW360_API_URL + '/authorization/client-management');
-	var credentials = Buffer.from(`${userdata.email}:${userdata.password}`, 'binary').toString('base64');
+	var credentials = Buffer.from(`${userdata.email}:${userdata.password}`, 'binary').toString(
+		'base64'
+	);
 	var opts = { method: 'GET', headers: {} };
 
 	opts.headers['Content-Type'] = 'application/json';
@@ -41,5 +43,5 @@ export async function post({ request }) {
 			}
 		});
 
-	return respond(sw360token)
+	return respond({ user: sw360token });
 }

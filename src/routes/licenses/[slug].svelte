@@ -6,9 +6,7 @@
 	import { faCheckCircle, faCircle, faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 
 	function nl2br(str) {
-		console.log(str);
 		let data = str.replace(/(?:\r\n|\r|\n)/g, '<br>');
-		console.log(data);
 		return data;
 	}
 

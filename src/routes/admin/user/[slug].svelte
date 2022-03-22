@@ -2,8 +2,6 @@
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import InfoCell from '$lib/components/InfoCell.svelte';
 	export let sw360user;
-
-	console.log(sw360user);
 </script>
 
 <PageHeader child="User">Admin</PageHeader>

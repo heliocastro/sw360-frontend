@@ -3,7 +3,7 @@ import * as api from '$lib/api';
 export async function get({ params, locals }) {
 	const endpoint = `licenses/${params.slug}`;
 
-	const license = await api.get(endpoint, locals.user && locals.user.access_token);
+	const license = await api.get(endpoint, locals.user && locals.user.user.access_token);
 
 	if (license)
 		return {

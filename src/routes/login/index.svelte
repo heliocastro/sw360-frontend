@@ -71,12 +71,7 @@
 				/>
 			</span>
 
-			<button
-				class="py-2 px-4 text-black mt-2 hover:text-white text-md font-bold border bg-sw360-orange rounded"
-				type="submit"
-			>
-				Sign-In
-			</button>
+			<button class="sw360-button" type="submit">Sign-In</button>
 		</form>
 	</div>
 </div>

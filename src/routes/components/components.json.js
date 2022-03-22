@@ -3,7 +3,7 @@ import * as api from '$lib/api';
 export async function get({ url: { searchParams }, locals }) {
 	const endpoint = 'components';
 
-	const components = await api.get(`${endpoint}`, locals.user && locals.user.access_token);
+	const components = await api.get(`${endpoint}`, locals.user && locals.user.user.access_token);
 
 	return {
 		headers: {
