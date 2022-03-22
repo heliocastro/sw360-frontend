@@ -1,6 +1,6 @@
 <script>
 	import RadioButton from '$lib/components/RadioButton.svelte';
-	import LicenseCell from '$lib/components/LicenseCell.svelte';
+	import InfoCell from '$lib/components/InfoCell.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import { faCheckCircle, faCircle, faCircleXmark } from '@fortawesome/free-regular-svg-icons';
@@ -38,29 +38,25 @@
 
 		<div class="col-span-3 bg-white w-full text-gray-900">
 			{#if options == 'Details'}
-				<div class="text-left px-3 py-4 w-full bg-sw360-navyblue text-white font-bold">
-					License Details
-				</div>
-				<LicenseCell>
+				<div class="sw360-navy-bg-text">License Details</div>
+				<InfoCell>
 					<span>Fullname:</span>
 					<div class="cols-span-2">{license.fullName}</div>
-				</LicenseCell>
-				<LicenseCell>
+				</InfoCell>
+				<InfoCell>
 					<span>Shortname:</span>
 					<div class="cols-span-2">{license.shortName}</div>
-				</LicenseCell>
+				</InfoCell>
 
-				<div class="px-3 py-3 border border-gray-200 w-full">
-					<div class="grid grid-cols-3">
-						<span>Is Checked:</span>
-						<Fa icon={faCheckCircle} color="green" />
-					</div>
-				</div>
-				<div class="px-3 py-3 border border-gray-200 w-full">
+				<InfoCell>
+					<span>Is Checked:</span>
+					<Fa icon={faCheckCircle} color="green" />
+				</InfoCell>
+				<InfoCell>
 					<div class="grid grid-cols-3">
 						<span>Type:</span>
 					</div>
-				</div>
+				</InfoCell>
 				<div class="px-3 py-3 border border-gray-200 w-full">
 					<div class="grid grid-cols-3">
 						<span>OSI Approved?:</span>

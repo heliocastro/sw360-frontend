@@ -24,12 +24,33 @@
 </script>
 
 <script>
-	import AdvancedSearch from './AdvancedSearch.svelte';
+	import AdvancedSearch from '$lib/components/AdvancedSearch.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import { html } from 'gridjs';
 	import Grid from 'gridjs-svelte';
 
 	export let userlist;
+
+	const search_items = [
+		{ title: 'Given Name', type: 'textedit', id: 'given_name' },
+		{ title: 'Last Name', type: 'textedit', id: 'last_name' },
+		{ title: 'Email', type: 'textedit', id: 'email' },
+		{ title: 'Primary Department', type: 'textedit', id: 'primary_department' },
+		{
+			title: 'Primary Department Role',
+			type: 'listbox',
+			id: 'primary_department_role',
+			value: [
+				'User',
+				'Admin',
+				'Clearing Admin',
+				'Clearing Expert',
+				'ECC Admin',
+				'Security Admin',
+				'SW360 Admin'
+			]
+		}
+	];
 
 	const columns = [
 		'Given name',
@@ -64,7 +85,7 @@
 <PageHeader child="User">Admin</PageHeader>
 
 <div class="grid-container grid grid-cols-6 px-16 pt-4 pb-8">
-	<div><AdvancedSearch /></div>
+	<div><AdvancedSearch items={search_items} /></div>
 
 	<div class="col-span-5">
 		<div class="grid grid-cols-2 pb-6 justify-self-start">

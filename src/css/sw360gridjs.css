@@ -15,8 +15,8 @@
 
 .gridjs-head {
 	width: 100%;
-	margin-bottom: 5px;
-	padding: 5px 1px;
+	/* margin-bottom: 5px;
+	padding: 5px 1px; */
 }
 .gridjs-head::after {
 	content: '';
@@ -43,11 +43,11 @@
 	position: relative;
 	width: 100%;
 	z-index: 5;
-	padding: 12px 24px;
+	padding: 6px 24px;
 	border-top: 1px solid #e5e7eb;
 	background-color: #fff;
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.26);
-	border-radius: 0 0 8px 8px;
+	border-radius: 0 0 2px 2px;
 	border-bottom-width: 1px;
 	border-color: #e5e7eb;
 }
@@ -61,8 +61,8 @@ input.gridjs-input {
 	outline: none;
 	background-color: #fff;
 	border: 1px solid #d2d6dc;
-	border-radius: 5px;
-	padding: 10px 13px;
+	border-radius: 2px;
+	padding: 6px 6px;
 	font-size: 14px;
 	line-height: 1.45;
 	-webkit-appearance: none;
@@ -179,7 +179,7 @@ table.gridjs-table {
 
 td.gridjs-td {
 	border: 1px solid #e5e7eb;
-	padding: 12px 24px;
+	padding: 12px 10px;
 	background-color: #fff;
 	box-sizing: content-box;
 }
@@ -202,7 +202,7 @@ th.gridjs-th {
 	color: #f9fafb;
 	border: 1px solid #e5e7eb;
 	border-top: none;
-	padding: 14px 24px;
+	padding: 12px 10px;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -273,14 +273,14 @@ th.gridjs-th:last-child {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.26);
-	border-radius: 8px 8px 0 0;
+	border-radius: 2px 2px 0 0;
 	display: block;
 	border-top-width: 1px;
 	border-color: #e5e7eb;
 }
 
 .gridjs-wrapper:nth-last-of-type(2) {
-	border-radius: 8px;
+	border-radius: 2px;
 	border-bottom-width: 1px;
 }
 

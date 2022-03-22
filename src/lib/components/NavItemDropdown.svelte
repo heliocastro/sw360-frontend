@@ -4,7 +4,7 @@
 	import { goto } from '$app/navigation';
 	const dispatch = createEventDispatcher();
 	import Fa from 'svelte-fa/src/fa.svelte';
-	import { faCaretSquareDown } from '@fortawesome/free-regular-svg-icons';
+	import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 	const current = getContext('nav');
 
@@ -40,8 +40,8 @@
 		aria-haspopup="true"
 	>
 		<div class="flex gap-1">
-			{label}
-			<Fa icon={faCaretSquareDown} />
+			<div>{label}</div>
+			<div class="mt-0.5"><Fa icon={faChevronDown} /></div>
 		</div>
 	</div>
 	<ul class="dropdown-menu rounded bg-white shadow-md absolute hidden container w-48 pt-1 z-50">
