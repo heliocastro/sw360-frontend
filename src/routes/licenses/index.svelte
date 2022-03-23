@@ -83,6 +83,7 @@
 		</div>
 		<div class="text-right text-2xl text-sw360-grey">LICENSES: ({totallic})</div>
 		<div class="col-span-2">
+			<div></div>
 			<Grid {data} {columns} sort search pagination={{ enabled: true }} />
 		</div>
 	</div>
