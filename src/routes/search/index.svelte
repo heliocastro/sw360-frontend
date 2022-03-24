@@ -52,11 +52,11 @@
 		{
 			name: 'Type',
 			formatter: (cell) =>
-				html(
-					`<span class="font-bold text-white ml-2 px-1.5 py-0.5 uppercase ${
-						cell.color
-					}">${cell.text.charAt(0)}</span>`
-				)
+				html(`<div class="font-bold w-5 h-5 uppercase rounded-sm ${cell.color}">
+					<p class="text-xs text-white pt-0.5 align-middle text-center font-semibold">
+						${cell.text.charAt(0)}
+					</p>
+				</div>`)
 		},
 		{
 			name: 'Text',

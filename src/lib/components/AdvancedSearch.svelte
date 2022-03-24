@@ -1,14 +1,19 @@
 <script>
+	import { element_is } from 'svelte/internal';
+
+	import TypeBadge from './TypeBadge.svelte';
 	export let title = 'Advanced Search';
 	export let items = [];
 	export let multibinds = {};
 	export let buttonAction = () => alert("I don't do anything yet");
 
 	function toggle() {
-		for (const element of multibinds.selected) {
-			checj
-			console.log(element);
+		var selector = document.getElementsByName('sw360selector');
+		let newchek = new Array();
+		for (const element of selector) {
+			if (multibinds.selected.indexOf(element.id) === -1) newchek.push(element.id);
 		}
+		multibinds.selected = newchek;
 	}
 
 	function deselectall() {
@@ -43,33 +48,35 @@
 					{:else if item.type === 'checkbox'}
 						{#if item.hasOwnProperty('value')}
 							{#each item.value as { id, label, color }}
-								<label class="font-bold">
-									<input
-										name="sw360selector"
-										type="checkbox"
-										{id}
-										bind:group={multibinds.selected}
-										value={id}
-									/>
-									<span class="font-bold text-white ml-2 px-1.5 py-0.5 uppercase {color}">
-										{label.charAt(0)}
-									</span>
-									{label}
-								</label>
+								<div class="grid grid-flow-col auto-cols-min gap-1">
+									<label class="w-4">
+										<input
+											name="sw360selector"
+											type="checkbox"
+											{id}
+											bind:group={multibinds.selected}
+											value={id}
+										/>
+									</label>
+									<TypeBadge {color}>{label.charAt(0)}</TypeBadge>
+									<div class="font-bold">{label}</div>
+								</div>
 							{/each}
 						{/if}
+						<div class="flex items-center justify-center text-gray-500 mt-4">
+							<button
+								class="rounded-l px-3 py-1 hover:text-black font-bold bg-white border border-gray-300"
+								on:click={toggle}>Toggle</button
+							>
+							<button
+								class="rounded-r px-3 py-1 hover:text-black font-bold bg-white border border-gray-300"
+								on:click={deselectall}>Deselect All</button
+							>
+						</div>
 					{/if}
 				</div>
 			{/each}
 		{/if}
-		<div class="flex items-center justify-center text-gray-600">
-			<button class="rounded-l px-2 py-1 hover:text-black font-bold bg-white border" on:click={toggle}
-				>Toggle</button
-			>
-			<button class="rounded-r px-1 py-1 hover:text-black font-bold bg-white border" on:click={deselectall}
-				>Deselect All</button
-			>
-		</div>
 		<button class="sw360-button w-full" on:click={buttonAction}>Search</button>
 	</div>
 </div>
