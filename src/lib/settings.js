@@ -7,3 +7,13 @@ export let typecolor = {
 	user: 'bg-red-500',
 	vendor: 'bg-violet-500'
 };
+
+export let entrypointsmap = {
+	project: 'projects',
+	component: 'components',
+	license: 'licenses',
+	release: 'releases',
+	obligation: 'obligations',
+	user: 'admin/user',
+	vendors: 'vendors'
+};

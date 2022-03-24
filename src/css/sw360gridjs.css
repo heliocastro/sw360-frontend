@@ -224,12 +224,7 @@ th.gridjs-th-sort {
 th.gridjs-th-sort .gridjs-th-content {
 	width: calc(100% - 15px);
 }
-/* th.gridjs-th-sort:hover {
-	background-color: #e5e7eb;
-} */
-/* th.gridjs-th-sort:focus {
-	background-color: #e5e7eb;
-} */
+
 th.gridjs-th-fixed {
 	position: sticky;
 	box-shadow: 0 1px 0 0 #e5e7eb;
@@ -286,6 +281,7 @@ th.gridjs-th:last-child {
 
 .gridjs-search {
 	float: left;
+	display: none;
 }
 .gridjs-search-input {
 	width: 250px;

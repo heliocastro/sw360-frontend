@@ -19,13 +19,16 @@
 	import AdvancedSearch from '$lib/components/AdvancedSearch.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import Grid from 'gridjs-svelte';
-	import { typecolor } from '$lib/settings';
+	import { typecolor, entrypointsmap } from '$lib/settings';
 	import { html } from 'gridjs';
 
 	let multibinds = { selected: [], searchText: '' };
 	let data = new Array();
 	let grid;
 	let total = 0;
+	let pagination = {
+		limit: 10
+	};
 
 	const keyword_items = [
 		{ title: null, type: 'textedit', id: 'searchText' },
@@ -61,10 +64,6 @@
 		}
 	];
 
-	let pagination = {
-		limit: 10
-	};
-
 	async function doSearch() {
 		let paramsObj = { searchText: multibinds.searchText ? multibinds.searchText : '*' };
 		let typeMasks = [];
@@ -82,16 +81,15 @@
 		for (const value of result[0].result) {
 			data.push([
 				{ color: typecolor[value.type], text: value.type },
-				{ url: `/${value.type}/${value.id}`, text: value.name }
+				{
+					url: `/${entrypointsmap[value.type]}/${value.id}`,
+					text: value.name
+				}
 			]);
 		}
 
 		total = data.length;
 
-		grid.updateConfig({ data }).forceRender();
-	}
-
-	function updategrid() {
 		grid.updateConfig({ data }).forceRender();
 	}
 </script>
@@ -114,7 +112,7 @@
 			Show <span>
 				<select
 					bind:value={pagination.limit}
-					on:change={updategrid}
+					on:change={grid.updateConfig({ data }).forceRender()}
 					class="bg-white rounded border p-1"
 				>
 					<option selected>10</option><option>25</option><option>50</option><option>100</option>

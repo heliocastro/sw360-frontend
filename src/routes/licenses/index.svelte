@@ -24,15 +24,24 @@
 </script>
 
 <script>
-	import { html } from 'gridjs';
-	import Grid from 'gridjs-svelte';
 	import CellIcon from '$lib/components/CellIcon.svelte';
-	import { SvelteWrapper } from 'gridjs-svelte/plugins';
 	import PageHeader from '$lib/components/PageHeader.svelte';
+	import Grid from 'gridjs-svelte';
+	import { html } from 'gridjs';
+	import { SvelteWrapper } from 'gridjs-svelte/plugins';
 
 	const getLastItem = (thePath) => thePath.substring(thePath.lastIndexOf('/') + 1);
 
 	export let licenses;
+	let totallic = 0;
+	const data = new Array();
+	let grid;
+	let pagination = {
+		limit: 10
+	};
+	let search = {
+		keyword: ''
+	};
 
 	const columns = [
 		{
@@ -52,27 +61,30 @@
 		'License Type'
 	];
 
-	const data = new Array();
-
 	for (const value of licenses[0].licenses._embedded['sw360:licenses']) {
 		const url = new URL(value._links.self.href);
 		data.push([getLastItem(url.pathname), value.fullName, value.checked, 'NADA']);
 	}
-	const totallic = data.length;
+	totallic = data.length;
+
+	function doSearch() {
+		search.keyword = this.value;
+		grid.updateConfig({ search }).forceRender();
+	}
 </script>
 
 <PageHeader>Licenses</PageHeader>
 
 <div class="grid grid-cols-6 pl-16 pr-16 pt-4 pb-8 gap-8">
-	<div class="rounded border h-1/5">
+	<div class="rounded">
 		<div class="sw360-navy-header">Quick Filter</div>
 
 		<div class="bg-sw360-paleblue flex h-24 justify-center items-center">
 			<input
 				class="shadow appearance-none border rounded-b w-5/6 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-				placeholder="I'm not working yet"
 				id="quickfilter"
 				type="search"
+				on:keyup={doSearch}
 			/>
 		</div>
 	</div>
@@ -82,9 +94,19 @@
 			<button class="sw360-button">Add License</button>
 		</div>
 		<div class="text-right text-2xl text-sw360-grey">LICENSES: ({totallic})</div>
+		<div class="my-4 text-base text-gray-600">
+			Show <span>
+				<select
+					bind:value={pagination.limit}
+					on:change={grid.updateConfig({ data }).forceRender()}
+					class="bg-white rounded border p-1"
+				>
+					<option selected>10</option><option>25</option><option>50</option><option>100</option>
+				</select>
+			</span>entries
+		</div>
 		<div class="col-span-2">
-			<div></div>
-			<Grid {data} {columns} sort search pagination={{ enabled: true }} />
+			<Grid bind:instance={grid} {data} {columns} sort {search} {pagination} />
 		</div>
 	</div>
 </div>
