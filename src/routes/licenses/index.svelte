@@ -67,9 +67,14 @@
 	}
 	totallic = data.length;
 
-	function doSearch() {
+	async function doSearch() {
 		search.keyword = this.value;
 		grid.updateConfig({ search }).forceRender();
+	}
+
+	async function doLimit() {
+		pagination.limit = this.value;
+		grid.updateConfig({ pagination }).forceRender();
 	}
 </script>
 
@@ -96,11 +101,7 @@
 		<div class="text-right text-2xl text-sw360-grey">LICENSES: ({totallic})</div>
 		<div class="my-4 text-base text-gray-600">
 			Show <span>
-				<select
-					bind:value={pagination.limit}
-					on:change={grid.updateConfig({ data }).forceRender()}
-					class="bg-white rounded border p-1"
-				>
+				<select on:change={doLimit} class="bg-white rounded border p-1">
 					<option selected>10</option><option>25</option><option>50</option><option>100</option>
 				</select>
 			</span>entries
