@@ -102,6 +102,10 @@ button:focus:not(:focus-visible) {
 		@apply py-2 px-4 h-10 text-black mt-2 hover:text-white text-base font-bold border bg-sw360-orange rounded;
 	}
 
+	.sw360-button-reverse {
+		@apply py-2 px-4 h-10 text-gray-500 mt-2 hover:text-black text-base font-bold border border-gray-400 bg-white rounded;
+	}
+
 	.sw360-navy-header {
 		@apply text-left px-4 py-3 w-full bg-sw360-navyblue rounded-t text-white text-base font-bold;
 	}

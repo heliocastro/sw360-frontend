@@ -19,13 +19,6 @@ const config = {
 			define: {
 				'process.env': process.env
 			},
-			css: {
-				preprocessorOptions: {
-					scss: {
-						additionalData: '@use "src/variables.scss" as *;'
-					}
-				}
-			}
 		}
 	}
 };
