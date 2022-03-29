@@ -22,9 +22,7 @@
 
 <header class:visible>
 	<div class="grid grid-cols-2 pl-16 items-center">
-		<!-- <div class="py-6"> -->
 		<img class="py-6 w-36" id="sw360logo" {src} alt="SW360" />
-		<!-- </div> -->
 		<div class="justify-self-end pr-16">
 			{#if $session.user}
 				<button
