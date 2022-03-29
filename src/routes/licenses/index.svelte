@@ -9,9 +9,10 @@
 			};
 		}
 
+		const dataheaders = new Headers({ Endpoint: 'licenses' });
 		const licenses = await Promise.all([
-			fetch(`/licenses/licenses.json${url.search}`, { credentials: 'include' }).then((r) =>
-				r.json()
+			fetch(`/data/data.json${url.search}`, { credentials: 'include', headers: dataheaders }).then(
+				(r) => r.json()
 			)
 		]);
 
@@ -25,7 +26,9 @@
 
 <script>
 	import CellIcon from '$lib/components/CellIcon.svelte';
+	import ComponentHeader from '$lib/components/ComponentHeader.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
+	import QuickFilter from '$lib/components/QuickFilter.svelte';
 	import Grid from 'gridjs-svelte';
 	import { html } from 'gridjs';
 	import { SvelteWrapper } from 'gridjs-svelte/plugins';
@@ -33,9 +36,9 @@
 	const getLastItem = (thePath) => thePath.substring(thePath.lastIndexOf('/') + 1);
 
 	export let licenses;
-	let totallic = 0;
+	let name = 'Licenses';
 	const data = new Array();
-	let grid;
+	let licensegrid;
 	let pagination = {
 		limit: 10
 	};
@@ -61,15 +64,15 @@
 		'License Type'
 	];
 
-	for (const value of licenses[0].licenses._embedded['sw360:licenses']) {
+	for (const value of licenses[0]) {
 		const url = new URL(value._links.self.href);
 		data.push([getLastItem(url.pathname), value.fullName, value.checked, 'NADA']);
 	}
-	totallic = data.length;
+	const total = data.length;
 
 	async function doSearch() {
 		search.keyword = this.value;
-		grid.updateConfig({ search }).forceRender();
+		licensegrid.updateConfig({ search }).forceRender();
 	}
 
 	async function doLimit() {
@@ -78,27 +81,15 @@
 	}
 </script>
 
-<PageHeader>Licenses</PageHeader>
+<PageHeader {name} />
 
 <div class="grid grid-cols-6 pl-16 pr-16 pt-4 pb-8 gap-8">
-	<div class="rounded">
-		<div class="sw360-navy-header">Quick Filter</div>
-
-		<div class="bg-sw360-paleblue flex h-24 justify-center items-center">
-			<input
-				class="shadow appearance-none border rounded-b w-5/6 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-				id="quickfilter"
-				type="search"
-				on:keyup={doSearch}
-			/>
-		</div>
-	</div>
+	<QuickFilter searchFunction={doSearch} />
 
 	<div class="col-span-5 grid grid-cols-2">
-		<div class="pb-6 justify-self-start">
+		<ComponentHeader {name} {total}>
 			<button class="sw360-button">Add License</button>
-		</div>
-		<div class="text-right text-2xl text-sw360-grey">LICENSES: ({totallic})</div>
+		</ComponentHeader>
 		<div class="my-4 text-base text-gray-600">
 			Show <span>
 				<select on:change={doLimit} class="bg-white rounded border p-1">
@@ -107,7 +98,7 @@
 			</span>entries
 		</div>
 		<div class="col-span-2">
-			<Grid bind:instance={grid} {data} {columns} sort {search} {pagination} />
+			<Grid bind:instance={licensegrid} {data} {columns} sort {search} {pagination} />
 		</div>
 	</div>
 </div>

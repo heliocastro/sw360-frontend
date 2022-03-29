@@ -2,9 +2,9 @@ import * as api from '$lib/api';
 
 export async function get({url: { searchParams }, locals, request}) {
 
-	console.log('-----------------------------')
-	console.log(request.headers.endpoint)
-	console.log('-----------------------------');
+	console.log('---------------- ENDPOINTS -------------');
+	console.log(request.headers);
+	console.log('---------------- ENDPOINTS -------------');
 
 	let endpoint = request.headers.get("endpoint");
 
@@ -16,6 +16,6 @@ export async function get({url: { searchParams }, locals, request}) {
 		headers: {
 			'cache-control': 'public, max-age=300'
 		},
-		body: data.hasOwnProperty('_embedded') ? data._embedded[`sw360:${endpoint}`][0] : data
+		body: data.hasOwnProperty('_embedded') ? data._embedded[`sw360:${endpoint}`] : data
 	};
 }

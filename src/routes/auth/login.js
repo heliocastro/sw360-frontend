@@ -43,5 +43,5 @@ export async function post({ request }) {
 			}
 		});
 
-	return respond({ user: sw360token });
+	return respond( sw360token );
 }

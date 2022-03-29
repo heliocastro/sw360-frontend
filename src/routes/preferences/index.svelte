@@ -17,6 +17,8 @@
 
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
+
+	let name = 'Preferences';
 </script>
 
-<PageHeader>Preferences</PageHeader>
+<PageHeader {name} />

@@ -5,6 +5,10 @@
 	import Footer from '$lib/components/Footer.svelte';
 </script>
 
+<svelte:head>
+	<link rel="icon" type="image/svg" href="/icons/favicon.ico" />
+</svelte:head>
+
 <div class="flex flex-col h-screen">
 	<Header />
 

@@ -8,12 +8,16 @@ export async function handle({ event, resolve }) {
 }
 
 export function getSession({ locals }) {
-    return {
-			user: locals.user && {
+    if(locals.user)
+         return {
+             user: {
 				access_token: locals.user.access_token,
 				token_type: locals.user.bearer,
 				refresh_token: locals.user.refresh_token,
                 jti: locals.user.jti
-			}
+             }
 		};
+    else {
+        return {};
+    }
 }

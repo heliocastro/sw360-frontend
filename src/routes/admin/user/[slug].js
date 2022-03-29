@@ -3,7 +3,7 @@ import * as api from '$lib/api';
 export async function get({ params, locals }) {
 	const endpoint = `users/${params.slug}`;
 
-	const sw360user = await api.get(endpoint, locals.user && locals.user.user.access_token);
+	const sw360user = await api.get(endpoint, locals.user && locals.user.access_token);
 
 	if (sw360user)
 		return {

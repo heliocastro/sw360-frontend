@@ -17,11 +17,13 @@
 
 <script>
 	import AdvancedSearch from '$lib/components/AdvancedSearch.svelte';
+	import ComponentHeader from '$lib/components/ComponentHeader.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import Grid from 'gridjs-svelte';
 	import { typecolor, entrypointsmap } from '$lib/settings';
 	import { html } from 'gridjs';
 
+	let name = 'Search';
 	let multibinds = { selected: [], searchText: '' };
 	let data = new Array();
 	let grid;
@@ -99,10 +101,9 @@
 	}
 </script>
 
-<PageHeader>Search</PageHeader>
-
-<div class="grid-container grid grid-cols-6 px-16 pt-4 pb-8">
-	<div>
+<PageHeader {name} />
+<div class="grid grid-cols-6 pl-16 pr-16 pt-4 pb-8 gap-8">
+	<div class="self-top">
 		<AdvancedSearch
 			title="Keyword Search"
 			items={keyword_items}
@@ -112,7 +113,9 @@
 	</div>
 
 	<div class="col-span-5">
-		<div class="text-right text-2xl text-sw360-grey uppercase">SEARCH RESULTS: ({total})</div>
+		<div class="text-right text-2xl text-sw360-grey place-self-end self-center uppercase">
+			Search Results: ({total})
+		</div>
 		<div class="my-4 text-base text-gray-600">
 			Show <span>
 				<select on:change={doLimit} class="bg-white rounded border p-1">

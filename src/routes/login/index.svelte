@@ -23,19 +23,19 @@
 	let email = SW360_DEV_EMAIL ? SW360_DEV_EMAIL : '';
 	let password = SW360_DEV_PASSWORD ? SW360_DEV_PASSWORD : '';
 	let errors = null;
+	let name = 'Login';
 
 	async function submit(event) {
 		const response = await post(`auth/login`, { email, password });
 
-		if (response.user) {
-			$session.user = response.user;
-			$session.username = email;
+		if (response) {
+			$session.user = response;
 			goto('/');
 		}
 	}
 </script>
 
-<PageHeader>Login</PageHeader>
+<PageHeader {name} />
 <div>
 	<div class="mx-14 my-20 rounded-md p-7 bg-gray-100">
 		<div class="text-4xl mt-7 mb-5">Welcome to SW360!</div>

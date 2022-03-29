@@ -5,7 +5,7 @@ export async function get({ url: { searchParams }, locals }) {
 
 	const search_result = await api.get(
 		`${endpoint}?${searchParams}`,
-		locals.user && locals.user.user.access_token
+		locals.user && locals.user.access_token
 	);
 
 	return {

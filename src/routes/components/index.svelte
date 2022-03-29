@@ -9,9 +9,10 @@
 			};
 		}
 
+		const dataheaders = new Headers({ Endpoint: 'components' });
 		const components = await Promise.all([
-			fetch(`/components/components.json${url.search}`, { credentials: 'include' }).then((r) =>
-				r.json()
+			fetch(`/data/data.json${url.search}`, { credentials: 'include', headers: dataheaders }).then(
+				(r) => r.json()
 			)
 		]);
 
@@ -25,11 +26,18 @@
 
 <script>
 	import AdvancedSearch from '$lib/components/AdvancedSearch.svelte';
+	import ComponentHeader from '$lib/components/ComponentHeader.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import { html } from 'gridjs';
 	import Grid from 'gridjs-svelte';
 
 	export let components;
+	const data = new Array();
+	let name = 'Components';
+	let pagination = {
+		limit: 10
+	};
+	let componentgrid;
 
 	const search_items = [
 		{ title: 'Component Name', type: 'textedit', id: 'component_name' },
@@ -38,7 +46,7 @@
 			title: 'Component Type',
 			type: 'listbox',
 			id: 'component_type',
-			value: ['OSS', 'COTS', 'Internal', 'Innes Source', 'Service', 'Freeware', 'Code Snippet']
+			value: ['OSS', 'COTS', 'Internal', 'Inner Source', 'Service', 'Freeware', 'Code Snippet']
 		},
 		{ title: 'Languages', type: 'textedit', id: 'languages' },
 		{ title: 'Software Platforms', type: 'textedit', id: 'software_platforms' },
@@ -65,8 +73,7 @@
 		'Actions'
 	];
 
-	const data = new Array();
-	for (const value of components[0].components) {
+	for (const value of components[0]) {
 		data.push([
 			'NOT SUPPORTED DIRECT BY REST API',
 			value.name,
@@ -74,23 +81,36 @@
 			value.componentType
 		]);
 	}
-
 	const total = data.length;
+
+	async function doLimit() {
+		pagination.limit = this.value;
+		componentgrid.updateConfig({ pagination }).forceRender();
+	}
 </script>
 
-<PageHeader child="User">Admin</PageHeader>
+<PageHeader {name} />
 
 <div class="grid-container grid grid-cols-6 px-16 pt-4 pb-8">
 	<div><AdvancedSearch items={search_items} /></div>
 
-	<div class="col-span-5">
-		<div class="grid grid-cols-2 pb-6 justify-self-start">
-			<div><button class="sw360-button">Add Component</button></div>
-			<div class="text-right text-2xl text-sw360-grey uppercase">USERS: ({total})</div>
+	<div class="col-span-5 grid grid-cols-2 content-start">
+		<ComponentHeader {name} {total}>
+			<button class="sw360-button">Add Vendor</button>
+			<button class="sw360-button-reverse">Import SPDX BOM</button>
+			<button class="sw360-button-reverse">Export Spreadsheet</button>
+		</ComponentHeader>
+
+		<div class="my-4 text-base text-gray-600">
+			Show <span>
+				<select on:change={doLimit} class="bg-white rounded border p-1">
+					<option selected>10</option><option>25</option><option>50</option><option>100</option>
+				</select>
+			</span>entries
 		</div>
 
-		<div class="col-span">
-			<Grid {data} {columns} sort pagination={{ enabled: true }} />
+		<div class="col-span-2">
+			<Grid bind:instance={componentgrid} {data} {columns} sort {pagination} />
 		</div>
 	</div>
 </div>
