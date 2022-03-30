@@ -1,7 +1,8 @@
 <script>
-	import RadioButton from '$lib/components/RadioButton.svelte';
+	import ComponentHeader from '$lib/components/ComponentHeader.svelte';
 	import InfoCell from '$lib/components/InfoCell.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
+	import RadioButton from '$lib/components/RadioButton.svelte';
 	import Fa from 'svelte-fa/src/fa.svelte';
 	import { faCheckCircle, faCircle, faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 
@@ -13,11 +14,13 @@
 	export let license;
 
 	let options = 'Details';
+	let name = license.shortName ? license.shortName : 'License';
+	let parent = 'Licenses';
 </script>
 
-<PageHeader child={license.shortName}>Licenses</PageHeader>
+<PageHeader {name} {parent} />
 
-<div class="grid grid-cols-6 pl-16 pr-16 pt-4 pb-8 gap-8">
+<div class="sw360-gridpanel">
 	<div>
 		<div>
 			<div class="grid grid-cols-1 bg-white border border-gray-200 rounded w-full text-gray-500">
@@ -28,13 +31,12 @@
 		</div>
 	</div>
 
-	<div class="col-span-5 grid grid-cols-3 gap-8">
-		<div><button class="sw360-button">Edit License</button></div>
-		<div class="col-span-2 text-right uppercase text-2xl text-sw360-grey">
-			{license.fullName} ({license.shortName})
-		</div>
+	<div class="sw360-gridpanel-content-r">
+		<ComponentHeader name="{license.fullName} ({license.shortName})">
+			<button class="sw360-button">Edit License</button>
+		</ComponentHeader>
 
-		<div class="col-span-3 bg-white w-full text-gray-900">
+		<div class="col-span-2 bg-white w-full text-gray-900">
 			{#if options == 'Details'}
 				<div class="sw360-navy-bg-text">License Details</div>
 				<InfoCell>

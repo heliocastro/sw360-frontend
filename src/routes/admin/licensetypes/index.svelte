@@ -9,15 +9,8 @@
 			};
 		}
 
-		// url.search = new URLSearchParams({ endpoint: 'vendors' }).toString();
-		// const vendors = await Promise.all([
-		// 	fetch(`/data/data.json${url.search}`, { credentials: 'include' }).then((r) => r.json())
-		// ]);
-
 		return {
-			props: {
-				//vendors
-			}
+			props: {}
 		};
 	}
 </script>
@@ -26,7 +19,6 @@
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import QuickFilter from '$lib/components/QuickFilter.svelte';
 	import Grid from 'gridjs-svelte';
-	import { html } from 'gridjs';
 
 	const name = 'License Types';
 	const parent = 'Admin';
@@ -43,12 +35,6 @@
 
 	const columns = ['License Type', 'Actions'];
 
-	// if (lictypes.data) {
-	// 	for (const value of vendors[0].vendors._embedded['sw360:vendors']) {
-	// 		const url = new URL(value._links.self.href);
-	// 		data.push(value.fullName, value.shortName, value.url);
-	// 	}
-	// }
 	total = data.length;
 
 	async function doSearch() {
@@ -64,10 +50,10 @@
 
 <PageHeader {name} {parent} />
 
-<div class="grid grid-cols-6 pl-16 pr-16 pt-4 pb-8 gap-8">
+<div class="sw360-gridpanel">
 	<QuickFilter searchFunction={doSearch} />
 
-	<div class="col-span-5 grid grid-cols-2">
+	<div class="sw360-gridpanel-content-r">
 		<div class="flex gap-2">
 			<button class="sw360-button">Add License Type</button>
 		</div>

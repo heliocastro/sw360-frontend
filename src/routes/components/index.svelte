@@ -9,9 +9,9 @@
 			};
 		}
 
-		const dataheaders = new Headers({ Endpoint: 'components' });
+		const headers = new Headers({ Endpoint: 'components' });
 		const components = await Promise.all([
-			fetch(`/data/data.json${url.search}`, { credentials: 'include', headers: dataheaders }).then(
+			fetch(`/data/data.json${url.search}`, { credentials: 'include', headers: headers }).then(
 				(r) => r.json()
 			)
 		]);
@@ -37,7 +37,7 @@
 	let pagination = {
 		limit: 10
 	};
-	let componentgrid;
+	let grid;
 
 	const search_items = [
 		{ title: 'Component Name', type: 'textedit', id: 'component_name' },
@@ -85,32 +85,32 @@
 
 	async function doLimit() {
 		pagination.limit = this.value;
-		componentgrid.updateConfig({ pagination }).forceRender();
+		grid.updateConfig({ pagination }).forceRender();
 	}
 </script>
 
 <PageHeader {name} />
 
-<div class="grid-container grid grid-cols-6 px-16 pt-4 pb-8">
+<div class="sw360-gridpanel">
 	<div><AdvancedSearch items={search_items} /></div>
 
-	<div class="col-span-5 grid grid-cols-2 content-start">
+	<div class="sw360-gridpanel-content-r">
 		<ComponentHeader {name} {total}>
 			<button class="sw360-button">Add Vendor</button>
 			<button class="sw360-button-reverse">Import SPDX BOM</button>
 			<button class="sw360-button-reverse">Export Spreadsheet</button>
 		</ComponentHeader>
 
-		<div class="my-4 text-base text-gray-600">
-			Show <span>
-				<select on:change={doLimit} class="bg-white rounded border p-1">
-					<option selected>10</option><option>25</option><option>50</option><option>100</option>
-				</select>
-			</span>entries
-		</div>
-
 		<div class="col-span-2">
-			<Grid bind:instance={componentgrid} {data} {columns} sort {pagination} />
+			<div class="my-4 text-base text-gray-600">
+				Show <span>
+					<select on:change={doLimit} class="bg-white rounded border p-1">
+						<option selected>10</option><option>25</option><option>50</option><option>100</option>
+					</select>
+				</span>entries
+			</div>
+
+			<Grid bind:instance={grid} {data} {columns} sort {pagination} />
 		</div>
 	</div>
 </div>

@@ -17,6 +17,8 @@
 
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
+
+	let name = 'Admin';
 </script>
 
-<PageHeader>Admin</PageHeader>
+<PageHeader {name} />

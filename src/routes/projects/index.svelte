@@ -27,10 +27,12 @@
 
 <script>
 	import AdvancedSearch from '$lib/components/AdvancedSearch.svelte';
-	import PageHeader from '$lib/components/PageHeader.svelte';
 	import ComponentHeader from '$lib/components/ComponentHeader.svelte';
-	import { html } from 'gridjs';
 	import Grid from 'gridjs-svelte';
+	import PageHeader from '$lib/components/PageHeader.svelte';
+	import ProjectState from './ProjectState.svelte';
+	import { html } from 'gridjs';
+	import { SvelteWrapper } from 'gridjs-svelte/plugins';
 
 	export let projects;
 	let name = 'Projects';
@@ -73,7 +75,12 @@
 		},
 		{
 			name: 'State',
-			formatter: (cell) => html(`<a href='/component/${cell}'>${cell}</a>`)
+			plugin: {
+				component: SvelteWrapper,
+				props: {
+					component: ProjectState
+				}
+			}
 		},
 		'License Clearing',
 		'Actions'
@@ -85,7 +92,9 @@
 			`${value.name}(${value.version})`,
 			value.description,
 			value.projectResponsible,
-			[value.state, value.clearingState]
+			value.state,
+			'data',
+			''
 		]);
 	}
 	const total = data.length;
@@ -98,23 +107,22 @@
 
 <PageHeader {name} />
 
-<div class="grid grid-cols-6 pl-16 pr-16 pt-4 pb-8 gap-8">
+<div class="sw360-gridpanel">
 	<AdvancedSearch items={search_items} />
-	<div class="col-span-5 grid grid-cols-2 content-start">
+	<div class="sw360-gridpanel-content-r">
 		<ComponentHeader {name} {total}>
 			<button class="sw360-button">Add Vendor</button>
 			<button class="sw360-button-reverse">Import SPDX BOM</button>
 			<button class="sw360-button-reverse">Export Spreadsheet</button>
 		</ComponentHeader>
-
-		<div class="my-4 text-base text-gray-600">
-			Show <span>
-				<select on:change={doLimit} class="bg-white rounded border p-1">
-					<option selected>10</option><option>25</option><option>50</option><option>100</option>
-				</select>
-			</span>entries
-		</div>
 		<div class="col-span-2">
+			<div class="my-4 text-base text-gray-600">
+				Show <span>
+					<select on:change={doLimit} class="bg-white rounded border p-1">
+						<option selected>10</option><option>25</option><option>50</option><option>100</option>
+					</select>
+				</span>entries
+			</div>
 			<Grid bind:instance={grid} {data} {columns} sort {pagination} />
 		</div>
 	</div>

@@ -17,6 +17,7 @@
 
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
+	let name = "Vulnerabilities"
 </script>
 
-<PageHeader>Vulnerabilities</PageHeader>
+<PageHeader {name}/>

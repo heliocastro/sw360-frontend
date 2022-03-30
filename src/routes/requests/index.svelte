@@ -17,6 +17,8 @@
 
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
+
+	let name = 'Requests';
 </script>
 
-<PageHeader>Requests</PageHeader>
+<PageHeader {name} />

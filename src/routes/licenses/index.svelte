@@ -38,22 +38,28 @@
 	export let licenses;
 	let name = 'Licenses';
 	const data = new Array();
-	let licensegrid;
 	let pagination = {
 		limit: 10
 	};
 	let search = {
 		keyword: ''
 	};
+	let grid;
 
 	const columns = [
 		{
-			name: 'Shortname',
-			formatter: (cell) => html(`<a href='/licenses/${cell}'>${cell}</a>`)
+			name: 'License Shortname',
+			formatter: (cell) => html(`<a href='/licenses/${cell}'>${cell}</a>`),
+			width: '20%'
 		},
-		'License Fullname',
+		{
+			name: 'License Fullname',
+			width: '60%'
+		},
+
 		{
 			name: 'Is Checked',
+			width: '10%',
 			plugin: {
 				component: SvelteWrapper,
 				props: {
@@ -66,13 +72,13 @@
 
 	for (const value of licenses[0]) {
 		const url = new URL(value._links.self.href);
-		data.push([getLastItem(url.pathname), value.fullName, value.checked, 'NADA']);
+		data.push([getLastItem(url.pathname), value.fullName, value.checked, '--']);
 	}
 	const total = data.length;
 
 	async function doSearch() {
 		search.keyword = this.value;
-		licensegrid.updateConfig({ search }).forceRender();
+		grid.updateConfig({ search }).forceRender();
 	}
 
 	async function doLimit() {
@@ -83,22 +89,22 @@
 
 <PageHeader {name} />
 
-<div class="grid grid-cols-6 pl-16 pr-16 pt-4 pb-8 gap-8">
+<div class="sw360-gridpanel">
 	<QuickFilter searchFunction={doSearch} />
 
-	<div class="col-span-5 grid grid-cols-2">
+	<div class="sw360-gridpanel-content-r">
 		<ComponentHeader {name} {total}>
 			<button class="sw360-button">Add License</button>
 		</ComponentHeader>
-		<div class="my-4 text-base text-gray-600">
-			Show <span>
-				<select on:change={doLimit} class="bg-white rounded border p-1">
-					<option selected>10</option><option>25</option><option>50</option><option>100</option>
-				</select>
-			</span>entries
-		</div>
 		<div class="col-span-2">
-			<Grid bind:instance={licensegrid} {data} {columns} sort {search} {pagination} />
+			<div class="my-4 text-base text-gray-600">
+				Show <span>
+					<select on:change={doLimit} class="bg-white rounded border p-1">
+						<option selected>10</option><option>25</option><option>50</option><option>100</option>
+					</select>
+				</span>entries
+			</div>
+			<Grid bind:instance={grid} {data} {columns} sort {search} {pagination} />
 		</div>
 	</div>
 </div>

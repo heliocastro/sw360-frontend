@@ -26,7 +26,7 @@
 	let name = 'Search';
 	let multibinds = { selected: [], searchText: '' };
 	let data = new Array();
-	let grid;
+	let grid = null;
 	let total = 0;
 	let pagination = {
 		limit: 10
@@ -102,7 +102,7 @@
 </script>
 
 <PageHeader {name} />
-<div class="grid grid-cols-6 pl-16 pr-16 pt-4 pb-8 gap-8">
+<div class="sw360-gridpanel">
 	<div class="self-top">
 		<AdvancedSearch
 			title="Keyword Search"
@@ -112,18 +112,16 @@
 		/>
 	</div>
 
-	<div class="col-span-5">
-		<div class="text-right text-2xl text-sw360-grey place-self-end self-center uppercase">
-			Search Results: ({total})
-		</div>
-		<div class="my-4 text-base text-gray-600">
-			Show <span>
-				<select on:change={doLimit} class="bg-white rounded border p-1">
-					<option selected>10</option><option>25</option><option>50</option><option>100</option>
-				</select>
-			</span>entries
-		</div>
-		<div class="col-span">
+	<div class="sw360-gridpanel-content-r">
+		<ComponentHeader name="Search Results" {total} />
+		<div class="col-span-2">
+			<div class="my-4 text-base text-gray-600">
+				Show <span>
+					<select on:change={doLimit} class="bg-white rounded border p-1">
+						<option selected>10</option><option>25</option><option>50</option><option>100</option>
+					</select>
+				</span>entries
+			</div>
 			<Grid {data} {columns} bind:instance={grid} sort {pagination} />
 		</div>
 	</div>

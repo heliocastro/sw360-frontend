@@ -93,22 +93,21 @@
 
 <PageHeader {name} {parent} />
 
-<div class="grid grid-cols-6 pl-16 pr-16 pt-4 pb-8 gap-8">
+<div class="sw360-gridpanel">
 	<div><AdvancedSearch items={search_items} /></div>
-	<div class="col-span-5 grid grid-cols-2 content-start">
+	<div class="sw360-gridpanel-content-r">
 		<ComponentHeader {name} {total}>
 			<button class="sw360-button">Add User</button>
 		</ComponentHeader>
-
-		<div class="mt-4 col-span-2 sw360-navy-text">sw360 users</div>
-		<div class="my-4 text-base text-gray-600">
-			Show <span>
-				<select on:change={doLimit} class="bg-white rounded border p-1">
-					<option selected>10</option><option>25</option><option>50</option><option>100</option>
-				</select>
-			</span>entries
-		</div>
 		<div class="col-span-2">
+			<div class="mt-4 col-span-2 sw360-navy-text">sw360 users</div>
+			<div class="my-4 text-base text-gray-600">
+				Show <span>
+					<select on:change={doLimit} class="bg-white rounded border p-1">
+						<option selected>10</option><option>25</option><option>50</option><option>100</option>
+					</select>
+				</span>entries
+			</div>
 			<Grid bind:instance={grid} {data} {columns} sort pagination={{ enabled: true }} />
 		</div>
 	</div>
