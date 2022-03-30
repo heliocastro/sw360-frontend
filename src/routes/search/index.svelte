@@ -39,7 +39,7 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 	};
 
 	const keyword_items = [
-		{ title: null, type: 'textedit', id: 'searchText' },
+		{ type: 'textedit', id: 'searchText' },
 		{
 			title: 'RESTRICT TO TYPE',
 			type: 'checkbox',
@@ -59,15 +59,12 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 	const columns = [
 		{
 			name: 'Type',
-			formatter: (cell) =>
-				html(`<div class="font-bold w-5 h-5 uppercase rounded-sm ${cell.color}">
-					<p class="text-xs text-white pt-0.5 align-middle text-center font-semibold">
-						${cell.text.charAt(0)}
-					</p>
-				</div>`)
+			width: '10%',
+			formatter: (cell) => html(cell)
 		},
 		{
 			name: 'Text',
+			width: '90%',
 			formatter: (cell) => html(`<a href="${cell.url}">${cell.text}</a>`)
 		}
 	];
@@ -86,8 +83,15 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 		]);
 
 		for (const value of result[0].result) {
+			let type = `<div class="grid grid-col-1"><div class="w-5 h-5 place-self-center rounded-sm ${
+				typecolor[value.type]
+			}">
+					<p class="text-xs text-white pt-0.5 align-middle text-center font-semibold uppercase">
+						${value.type.charAt(0)}
+					</p>
+				</div></div>`;
 			data.push([
-				{ color: typecolor[value.type], text: value.type },
+				type,
 				{
 					url: `/${entrypointsmap[value.type]}/${value.id}`,
 					text: value.name

@@ -6,12 +6,13 @@ available under the terms of the Eclipse Public License 2.0
 which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 <script>
 	import { goto } from '$app/navigation';
-	import Fa from 'svelte-fa/src/fa.svelte';
-	import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 	export let label;
 	export let link;
 	export let active;
+
+	// icons
+	import IconAngleDown from '$lib/icons/angle-down.svg';
 
 	let items = [
 		{ label: 'User', link: '/admin/user' },
@@ -42,7 +43,7 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 	>
 		<div class="flex gap-1">
 			<div>{label}</div>
-			<div class="mt-0.5"><Fa icon={faChevronDown} /></div>
+			<IconAngleDown class="w-3" />
 		</div>
 	</div>
 	<ul class="dropdown-menu rounded bg-white shadow-md absolute hidden container w-48 pt-1 z-50">

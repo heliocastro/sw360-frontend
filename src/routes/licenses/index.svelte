@@ -31,13 +31,14 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 </script>
 
 <script>
-	import CellIcon from '$lib/components/CellIcon.svelte';
 	import ComponentHeader from '$lib/components/ComponentHeader.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import QuickFilter from '$lib/components/QuickFilter.svelte';
 	import Grid from 'gridjs-svelte';
 	import { html } from 'gridjs';
-	import { SvelteWrapper } from 'gridjs-svelte/plugins';
+
+	// icons
+	import checkCircleSrc from '$lib/icons/check-circle.svg?src';
 
 	const getLastItem = (thePath) => thePath.substring(thePath.lastIndexOf('/') + 1);
 
@@ -55,30 +56,35 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 	const columns = [
 		{
 			name: 'License Shortname',
-			formatter: (cell) => html(`<a href='/licenses/${cell}'>${cell}</a>`),
-			width: '20%'
+			formatter: (cell) => html(cell),
+			width: '25%'
 		},
 		{
 			name: 'License Fullname',
-			width: '60%'
+			width: '55%'
 		},
 
 		{
 			name: 'Is Checked',
 			width: '10%',
-			plugin: {
-				component: SvelteWrapper,
-				props: {
-					component: CellIcon
-				}
-			}
+			formatter: (cell) => html(cell)
 		},
-		'License Type'
+		{
+			name: 'License Type',
+			width: '15%'
+		}
 	];
 
 	for (const value of licenses[0]) {
 		const url = new URL(value._links.self.href);
-		data.push([getLastItem(url.pathname), value.fullName, value.checked, '--']);
+		const checked = value.checked ? 'fill-green-700' : 'fill=red-700';
+		const shortName = getLastItem(url.pathname);
+		data.push([
+			`<a href='/licenses/${shortName}'>${shortName}</a></div>`,
+			value.fullName,
+			`<div class="grid grid-cols-1"><div class="w-4 place-self-center ${checked}">${checkCircleSrc}</div></div>`,
+			'--'
+		]);
 	}
 	const total = data.length;
 

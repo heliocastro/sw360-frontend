@@ -1,5 +1,6 @@
 import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
+import svg from '@poppanator/sveltekit-svg';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -19,6 +20,7 @@ const config = {
 			define: {
 				'process.env': process.env
 			},
+			plugins: [svg()],
 		}
 	}
 };

@@ -9,8 +9,10 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 	import InfoCell from '$lib/components/InfoCell.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import RadioButton from '$lib/components/RadioButton.svelte';
-	import Fa from 'svelte-fa/src/fa.svelte';
-	import { faCheckCircle, faCircleXmark } from '@fortawesome/free-regular-svg-icons';
+
+	// icons
+	import checkCircleSrc from '$lib/icons/check-circle.svg?src';
+	import timesCircleSrc from '$lib/icons/times-circle.svg?src';
 
 	function nl2br(str) {
 		let data = str.replace(/(?:\r\n|\r|\n)/g, '<br>');
@@ -56,7 +58,14 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 
 				<InfoCell>
 					<span>Is Checked:</span>
-					<Fa icon={faCheckCircle} color="green" />
+
+					<div class="grid grid-cols-1">
+						{#if license.checked}
+							{@html `<div class="w-4 fill-green-700">${checkCircleSrc}</div>`}
+						{:else}
+							{@html `<div class="w-4 fill-red-700">${timesCircleSrc}</div>`}
+						{/if}
+					</div>
 				</InfoCell>
 				<InfoCell>
 					<div class="grid grid-cols-3">
@@ -67,9 +76,9 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 					<div class="grid grid-cols-3">
 						<span>OSI Approved?:</span>
 						{#if license.OSIApproved == 'NA'}
-							<Fa icon={faCircleXmark} color="red" />
+							{@html `<div class="w-4 fill-red-700">${timesCircleSrc}</div>`}
 						{:else}
-							<Fa icon={faCheckCircle} color="green" />
+							{@html `<div class="w-4 fill-green-700">${checkCircleSrc}</div>`}
 						{/if}
 					</div>
 				</div>
@@ -77,9 +86,9 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 					<div class="grid grid-cols-3">
 						<span>FSF Free/Libre?:</span>
 						{#if license.OSIApproved == 'NA'}
-							<Fa icon={faCircleXmark} color="red" />
+							{@html `<div class="w-4 fill-red-700">${timesCircleSrc}</div>`}
 						{:else}
-							<Fa icon={faCheckCircle} color="green" />
+							{@html `<div class="w-4 fill-green-700">${checkCircleSrc}</div>`}
 						{/if}
 					</div>
 				</div>
