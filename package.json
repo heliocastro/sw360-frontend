@@ -1,7 +1,10 @@
 {
-	"name": "template",
+	"name": "sw360-frontend",
 	"version": "0.0.1",
+	"description": "sw360 Svelte based modern frontend",
 	"private": true,
+	"homepage": "https://hithub.com/heliocastro/sw360-frontend",
+	"license": "EPL-2.0",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
