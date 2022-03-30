@@ -10,7 +10,7 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import RadioButton from '$lib/components/RadioButton.svelte';
 	import Fa from 'svelte-fa/src/fa.svelte';
-	import { faCheckCircle, faCircle, faCircleXmark } from '@fortawesome/free-regular-svg-icons';
+	import { faCheckCircle, faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 
 	function nl2br(str) {
 		let data = str.replace(/(?:\r\n|\r|\n)/g, '<br>');

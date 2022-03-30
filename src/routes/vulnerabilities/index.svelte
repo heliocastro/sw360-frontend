@@ -7,7 +7,7 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 <script context="module">
 	export const prerender = true;
 
-	export async function load({ url, fetch, session }) {
+	export async function load({ session }) {
 		if (!session.user) {
 			return {
 				status: 302,
@@ -23,7 +23,7 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 
 <script>
 	import PageHeader from '$lib/components/PageHeader.svelte';
-	let name = "Vulnerabilities"
+	let name = 'Vulnerabilities';
 </script>
 
-<PageHeader {name}/>
+<PageHeader {name} />

@@ -7,7 +7,7 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 <script context="module">
 	export const prerender = true;
 
-	export async function load({ url, fetch, session }) {
+	export async function load({ session }) {
 		if (!session.user) {
 			return {
 				status: 302,
@@ -74,7 +74,6 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 
 	async function doSearch() {
 		let paramsObj = { searchText: multibinds.searchText ? multibinds.searchText : '*' };
-		let typeMasks = [];
 
 		data = [];
 

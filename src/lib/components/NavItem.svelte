@@ -5,12 +5,6 @@ This program and the accompanying materials are made
 available under the terms of the Eclipse Public License 2.0
 which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 <script>
-	import { getContext } from 'svelte';
-	import { createEventDispatcher } from 'svelte';
-	const dispatch = createEventDispatcher();
-
-	const current = getContext('nav');
-
 	import { goto } from '$app/navigation';
 	export let label;
 	export let link;

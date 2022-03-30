@@ -24,14 +24,14 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 	import { post } from '$lib/utils.js';
 	import ListErrors from '$lib/ListErrors.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
-	import { SW360_DEV_EMAIL, SW360_DEV_PASSWORD, SW360_API_URL } from '$lib/env';
+	import { SW360_DEV_EMAIL, SW360_DEV_PASSWORD } from '$lib/env';
 
 	let email = SW360_DEV_EMAIL ? SW360_DEV_EMAIL : '';
 	let password = SW360_DEV_PASSWORD ? SW360_DEV_PASSWORD : '';
 	let errors = null;
 	let name = 'Login';
 
-	async function submit(event) {
+	async function submit() {
 		const response = await post(`auth/login`, { email, password });
 
 		if (response) {
