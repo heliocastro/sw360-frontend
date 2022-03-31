@@ -3,25 +3,27 @@ Copyright (c) 2022 Helio Chissini de Castro
 
 This program and the accompanying materials are made
 available under the terms of the Eclipse Public License 2.0
-which is available at https://www.eclipse.org/legal/epl-2.0/ -->
-<script context="module" lang="ts">
-	export const prerender = true;
+which is available at https://www.eclipse.org/legal/epl-2.0/
 
-	export async function load({ session }) {
-		if (!session.user) {
-			return {
-				status: 302,
-				redirect: '/login'
-			};
-		}
-		return {};
-	}
+SPDX-License-Identifier: EPL-2.0 -->
+<script context="module" lang="ts">
+  export const prerender = true
+
+  export async function load({ session }) {
+    if (!session.user) {
+      return {
+        status: 302,
+        redirect: '/login'
+      }
+    }
+    return {}
+  }
 </script>
 
 <script lang="ts">
-	import PageHeader from '$lib/components/PageHeader.svelte';
+  import PageHeader from '$lib/components/PageHeader.svelte'
 
-	const name = 'Home';
+  const name = 'Home'
 </script>
 
 <PageHeader {name} />
