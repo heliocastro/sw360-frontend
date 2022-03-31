@@ -8,7 +8,7 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
   import { page, session } from '$app/stores'
   import NavItem from '$lib/components/NavItem.svelte'
   import NavItemDropdown from '$lib/components/NavItemDropdown.svelte'
-  import { post } from '$lib/utils.ts'
+  import { post } from '$lib/utils'
 
   let src = '/images/sw360.png'
   let path

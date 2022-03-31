@@ -21,7 +21,7 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 <script lang="ts">
   import { session } from '$app/stores'
   import { goto } from '$app/navigation'
-  import { post } from '$lib/utils.ts'
+  import { post } from '$lib/utils'
   import ListErrors from '$lib/ListErrors.svelte'
   import PageHeader from '$lib/components/PageHeader.svelte'
   import { SW360_DEV_EMAIL, SW360_DEV_PASSWORD } from '$lib/env'
