@@ -114,8 +114,12 @@ button:focus:not(:focus-visible) {
 		@apply text-left px-4 py-3 w-full bg-sw360-navyblue rounded-t text-white text-base font-bold;
 	}
 
+	.sw360-text {
+		@apply text-left px-3 py-3 w-full bg-white text-black;
+	}
+
 	.sw360-navy-text {
-		@apply text-sw360-navyblue font-bold text-base uppercase bg-white mb-2 border-b border-sw360-navyblue;
+		@apply text-sw360-navyblue font-bold text-base uppercase mb-2 border-b border-sw360-navyblue;
 	}
 
 	.sw360-navy-bg-text {
@@ -139,6 +143,6 @@ button:focus:not(:focus-visible) {
 	}
 
 	.sw360-gridpanel-content-full {
-		@apply col-span-6 grid grid-cols-2 gap-4 content-start;
+		@apply col-span-6 grid grid-cols-2 grid-cols-[75%_25%] gap-4 content-start;
 	}
 }

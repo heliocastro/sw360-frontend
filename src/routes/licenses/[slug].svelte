@@ -11,7 +11,9 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 	import RadioButton from '$lib/components/RadioButton.svelte';
 
 	// icons
+	// @ts-ignore
 	import checkCircleSrc from '$lib/icons/check-circle.svg?src';
+	// @ts-ignore
 	import timesCircleSrc from '$lib/icons/times-circle.svg?src';
 
 	export let license;

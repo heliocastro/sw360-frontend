@@ -5,8 +5,6 @@ This program and the accompanying materials are made
 available under the terms of the Eclipse Public License 2.0
 which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 <script context="module" lang="ts">
-  export const prerender = true
-
   export async function load({ url, fetch, session }) {
     if (!session.user) {
       return {
@@ -38,13 +36,12 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
   import Grid from 'gridjs-svelte'
 
   export let components
-  const data = []
   let name = 'Components'
   let pagination = {
     enabled: true,
     limit: 10
   }
-  let grid
+  let grid: Grid = null
 
   const search_items = [
     { title: 'Component Name', type: 'textedit', id: 'component_name' },
@@ -80,6 +77,7 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
     'Actions'
   ]
 
+  const data = []
   for (const value of components[0]) {
     data.push([
       'NOT SUPPORTED DIRECT BY REST API',

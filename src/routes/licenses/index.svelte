@@ -5,8 +5,6 @@ This program and the accompanying materials are made
 available under the terms of the Eclipse Public License 2.0
 which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 <script context="module" lang="ts">
-  export const prerender = true
-
   export async function load({ url, fetch, session }) {
     if (!session.user) {
       return {
@@ -38,13 +36,13 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
   import { html } from 'gridjs'
 
   // icons
+  // @ts-ignore
   import checkCircleSrc from '$lib/icons/check-circle.svg?src'
 
   const getLastItem = thePath => thePath.substring(thePath.lastIndexOf('/') + 1)
 
   export let licenses
   let name = 'Licenses'
-  const data = []
   let pagination = {
     enabled: true,
     limit: 10
@@ -76,6 +74,7 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
     }
   ]
 
+  const data = []
   for (const value of licenses[0]) {
     const url = new URL(value._links.self.href)
     const checked = value.checked ? 'fill-green-700' : 'fill=red-700'

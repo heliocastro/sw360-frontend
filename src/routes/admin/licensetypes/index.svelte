@@ -5,8 +5,6 @@ This program and the accompanying materials are made
 available under the terms of the Eclipse Public License 2.0
 which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 <script context="module" lang="ts">
-  export const prerender = true
-
   export async function load({ session }) {
     if (!session.user) {
       return {
@@ -24,6 +22,7 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 <script lang="ts">
   import PageHeader from '$lib/components/PageHeader.svelte'
   import QuickFilter from '$lib/components/QuickFilter.svelte'
+  import ComponentHeader from '$lib/components/ComponentHeader.svelte'
   import Grid from 'gridjs-svelte'
 
   const name = 'License Types'
@@ -61,12 +60,9 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
   <QuickFilter searchFunction={doSearch} />
 
   <div class="sw360-gridpanel-content-r">
-    <div class="flex gap-2">
+    <ComponentHeader {name} {total}>
       <button class="sw360-button">Add License Type</button>
-    </div>
-    <div class="text-right text-2xl text-sw360-grey place-self-end uppercase">
-      License Types: ({total})
-    </div>
+    </ComponentHeader>
 
     <div class="my-4 text-base text-gray-600">
       Show <span>
