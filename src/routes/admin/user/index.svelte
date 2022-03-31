@@ -4,7 +4,7 @@ Copyright (c) 2022 Helio Chissini de Castro
 This program and the accompanying materials are made
 available under the terms of the Eclipse Public License 2.0
 which is available at https://www.eclipse.org/legal/epl-2.0/ -->
-<script context="module">
+<script context="module" lang="ts">
 	export const prerender = true;
 
 	export async function load({ url, fetch, session }) {
@@ -29,7 +29,7 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 	}
 </script>
 
-<script>
+<script lang="ts">
 	import AdvancedSearch from '$lib/components/AdvancedSearch.svelte';
 	import ComponentHeader from '$lib/components/ComponentHeader.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
@@ -37,9 +37,16 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 	import Grid from 'gridjs-svelte';
 
 	export let userlist;
+
 	let name = 'Users';
 	let parent = 'Admin';
 	let grid;
+
+	let pagination = {
+		enabled: true,
+		limit: 10
+	};
+	const data = []
 
 	const search_items = [
 		{ title: 'Given Name', type: 'textedit', id: 'given_name' },
@@ -74,8 +81,6 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 		'Secondary Department Role',
 		'Actions'
 	];
-
-	const data = new Array();
 
 	for (const value of userlist[0].userlist) {
 		data.push([

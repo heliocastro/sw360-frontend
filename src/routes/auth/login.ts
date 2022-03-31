@@ -11,16 +11,18 @@ import { SW360_API_URL } from '$lib/env';
 export async function post({ request }) {
 	const userdata = await request.json();
 
-	var url = new URL(SW360_API_URL + '/authorization/client-management');
-	var credentials = Buffer.from(`${userdata.email}:${userdata.password}`, 'binary').toString(
+	let url: URL = new URL(SW360_API_URL + '/authorization/client-management');
+	let credentials: string = Buffer.from(`${userdata.email}:${userdata.password}`, 'binary').toString(
 		'base64'
 	);
-	var opts = { method: 'GET', headers: {} };
+	const opts = { method: 'GET', headers: {} };
 
 	opts.headers['Content-Type'] = 'application/json';
 	opts.headers['Authorization'] = `Basic ${credentials}`;
 
-	const baseauth = await fetch(url, opts)
+	let secrets = null;
+
+	await fetch(url.toString(), opts)
 		.then((response) => response.text())
 		.then((json) => {
 			try {
@@ -29,18 +31,17 @@ export async function post({ request }) {
 				secrets = json;
 			}
 		});
-	client_id = secrets.client_id;
-	client_secret = secrets.client_secret;
 
 	credentials = Buffer.from(`${secrets.client_id}:${secrets.client_secret}`, `binary`).toString(
 		'base64'
 	);
 	opts.headers['Authorization'] = `Basic ${credentials}`;
 	url = new URL(SW360_API_URL + '/authorization/oauth/token');
-	var params = { grant_type: 'password', username: userdata.email, password: userdata.password };
+	const params = { grant_type: 'password', username: userdata.email, password: userdata.password };
 	url.search = new URLSearchParams(params).toString();
 
-	const body = await fetch(url, opts)
+	let sw360token: JSON | string = null
+	await fetch(url.toString(), opts)
 		.then((response) => response.text())
 		.then((json) => {
 			try {

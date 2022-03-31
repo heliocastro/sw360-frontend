@@ -15,7 +15,7 @@ async function send({ method, path, data, token }) {
 
 	if (data) {
 		opts.headers['Content-Type'] = 'application/json';
-		opts.body = JSON.stringify(data);
+		opts['body']= JSON.stringify(data);
 	}
 
 	if (token) {
@@ -33,18 +33,18 @@ async function send({ method, path, data, token }) {
 		});
 }
 
-export function get(path, token) {
-	return send({ method: 'GET', path, token });
+export function get(path: string, token: string) {
+	return send({ method: 'GET', path, token, data: null });
 }
 
-export function del(path, token) {
-	return send({ method: 'DELETE', path, token });
+export function del(path: string, token: string) {
+	return send({ method: 'DELETE', path, token, data: null });
 }
 
-export function post(path, data, token) {
+export function post(path: string, data: Object, token: string) {
 	return send({ method: 'POST', path, data, token });
 }
 
-export function put(path, data, token) {
+export function put(path: string, data, token: string) {
 	return send({ method: 'PUT', path, data, token });
 }

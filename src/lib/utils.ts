@@ -6,7 +6,7 @@
 
 // SPDX-License-Identifier: EPL-2.0
 
-export function post(endpoint, data) {
+export function post(endpoint: string, data: Object) {
 	return fetch(endpoint, {
 		method: 'POST',
 		credentials: 'include',

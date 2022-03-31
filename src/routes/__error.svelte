@@ -4,7 +4,7 @@ Copyright (c) 2022 Helio Chissini de Castro
 This program and the accompanying materials are made
 available under the terms of the Eclipse Public License 2.0
 which is available at https://www.eclipse.org/legal/epl-2.0/ -->
-<script context="module">
+<script context="module" lang="ts">
 	export function load({ error, status }) {
 		return {
 			props: { error, status }
@@ -12,7 +12,7 @@ which is available at https://www.eclipse.org/legal/epl-2.0/ -->
 	}
 </script>
 
-<script>
+<script lang="ts">
 	import { dev } from '$app/env';
 	export let error, status;
 </script>
