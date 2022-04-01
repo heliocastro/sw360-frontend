@@ -9,6 +9,7 @@ SPDX-License-Identifier: EPL-2.0 -->
 <script lang="ts">
   import '../scss/app.scss'
   import '../css/sw360gridjs.css'
+  import '$lib/icons/sw360-icons-bundle.js'
   import Header from '$lib/components/Header.svelte'
   import Footer from '$lib/components/Footer.svelte'
 </script>

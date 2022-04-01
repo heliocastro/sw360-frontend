@@ -11,14 +11,13 @@
 		"package": "svelte-kit package",
 		"preview": "svelte-kit preview",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-check --jsconfig ./jsconfig.json --watch",
+		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write ./src/**/*.{svelte,ts,js} ./*.{ts,js}",
 		"lint": "eslint ./src/**/*.{svelte,ts,js} --ignore-path .gitignore .",
 		"lint:fix": "eslint --fix ./src/**/*.{svelte,ts,js} --ignore-path .gitignore ."
 	},
 	"devDependencies": {
-		"@poppanator/sveltekit-svg": "^0.3.1",
-		"@sveltejs/adapter-auto": "^1.0.0-next.33",
+		"@iconify/svelte": "^2.2.1",
 		"@sveltejs/kit": "^1.0.0-next.297",
 		"@types/cookie": "^0.4.1",
 		"@typescript-eslint/eslint-plugin": "^5.17.0",
@@ -27,7 +26,11 @@
 		"eslint": "^7.32.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-svelte3": "^3.4.0",
+		"gridjs": "^5.0.2",
+		"gridjs-svelte": "^2.1.1",
 		"marked": "^4.0.12",
+		"node-fetch": "^3.2.3",
+		"node-sass": "^7.0.1",
 		"postcss": "^8.4.6",
 		"postcss-load-config": "^3.1.4",
 		"postcss-nested": "^5.0.6",
@@ -46,12 +49,9 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/fira-mono": "^4.5.0",
+		"@sveltejs/adapter-node": "^1.0.0-next.73",
 		"cookie": "^0.4.1",
 		"cssnano": "^5.1.5",
-		"gridjs": "^5.0.2",
-		"gridjs-svelte": "^2.1.0",
-		"node-fetch": "^3.2.1",
-		"node-sass": "^7.0.1",
 		"svelte-i18n": "^3.3.13"
 	}
 }

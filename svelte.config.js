@@ -1,6 +1,5 @@
-import adapter from '@sveltejs/adapter-auto';
+// import adapter from '@sveltejs/adapter-node';
 import preprocess from 'svelte-preprocess';
-import svg from '@poppanator/sveltekit-svg';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -9,18 +8,18 @@ const config = {
 	preprocess: [
 		preprocess({
 			scss: {
-				prependData: '@use "src/variables.scss" as *;'
+				postcss: true,
+				includePaths: "src/scss"
 			}
 		})
 	],
 	kit: {
-		adapter: adapter(),
+		// adapter: adapter(),
 
 		vite: {
 			define: {
 				'process.env': process.env
 			},
-			plugins: [svg()],
 		}
 	}
 };

@@ -7,7 +7,7 @@ which is available at https://www.eclipse.org/legal/epl-2.0/
 
 SPDX-License-Identifier: EPL-2.0 -->
 <script context="module" lang="ts">
-  export async function load({ url, fetch, session }) {
+  export async function load({ fetch, session }) {
     if (!session.user) {
       return {
         status: 302,
@@ -15,11 +15,9 @@ SPDX-License-Identifier: EPL-2.0 -->
       }
     }
 
-    const dataheaders = new Headers({ Endpoint: 'licenses' })
+    const headers = new Headers({ Endpoint: 'licenses' })
     const licenses = await Promise.all([
-      fetch(`/data/data.json${url.search}`, { credentials: 'include', headers: dataheaders }).then(
-        r => r.json()
-      )
+      fetch(`/data/data.json`, { credentials: 'include', headers: headers }).then(r => r.json())
     ])
 
     return {
@@ -32,14 +30,12 @@ SPDX-License-Identifier: EPL-2.0 -->
 
 <script lang="ts">
   import ComponentHeader from '$lib/components/ComponentHeader.svelte'
+  import Grid from 'gridjs-svelte'
+  import Icon from '@iconify/svelte'
   import PageHeader from '$lib/components/PageHeader.svelte'
   import QuickFilter from '$lib/components/QuickFilter.svelte'
-  import Grid from 'gridjs-svelte'
   import { html } from 'gridjs'
-
-  // icons
-  // @ts-ignore
-  import checkCircleSrc from '$lib/icons/check-circle.svg?src'
+  import { SvelteWrapper } from 'gridjs-svelte/plugins'
 
   const getLastItem = thePath => thePath.substring(thePath.lastIndexOf('/') + 1)
 
@@ -52,7 +48,7 @@ SPDX-License-Identifier: EPL-2.0 -->
   let search = {
     keyword: ''
   }
-  let grid: Grid = null
+  let grid = null
 
   const columns = [
     {
@@ -68,7 +64,12 @@ SPDX-License-Identifier: EPL-2.0 -->
     {
       name: 'Is Checked',
       width: '10%',
-      formatter: cell => html(cell)
+      plugin: {
+        component: SvelteWrapper,
+        props: {
+          component: Icon
+        }
+      }
     },
     {
       name: 'License Type',
@@ -84,7 +85,7 @@ SPDX-License-Identifier: EPL-2.0 -->
     data.push([
       `<a href='/licenses/${shortName}'>${shortName}</a></div>`,
       value.fullName,
-      `<div class="grid grid-cols-1"><div class="w-4 place-self-center ${checked}">${checkCircleSrc}</div></div>`,
+      'sw360-check-circle',
       '--'
     ])
   }

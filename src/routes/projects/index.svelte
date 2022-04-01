@@ -39,6 +39,7 @@ SPDX-License-Identifier: EPL-2.0 -->
   import Grid from 'gridjs-svelte'
   import PageHeader from '$lib/components/PageHeader.svelte'
   import ProjectState from './ProjectState.svelte'
+  import ProjectActions from './ProjectActions.svelte'
   import { html } from 'gridjs'
   import { SvelteWrapper } from 'gridjs-svelte/plugins'
 
@@ -84,6 +85,7 @@ SPDX-License-Identifier: EPL-2.0 -->
     },
     {
       name: 'State',
+      width: '10%',
       plugin: {
         component: SvelteWrapper,
         props: {
@@ -91,8 +93,20 @@ SPDX-License-Identifier: EPL-2.0 -->
         }
       }
     },
-    'License Clearing',
-    'Actions'
+    {
+      name: 'License Clearing',
+      width: '20%'
+    },
+    {
+      name: 'Actions',
+      width: '10%',
+      plugin: {
+        component: SvelteWrapper,
+        props: {
+          component: ProjectActions
+        }
+      }
+    }
   ]
 
   const data = []

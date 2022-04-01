@@ -14,7 +14,7 @@ SPDX-License-Identifier: EPL-2.0 -->
   export let active
 
   // icons
-  import IconAngleDown from '$lib/icons/angle-down.svg'
+  import Icon from '@iconify/svelte'
 
   let items = [
     { label: 'User', link: '/admin/user' },
@@ -45,7 +45,7 @@ SPDX-License-Identifier: EPL-2.0 -->
   >
     <div class="flex gap-1">
       <div>{label}</div>
-      <div class="w-3 place-self-center"><IconAngleDown /></div>
+      <div class="place-self-center"><Icon icon="sw360-angle-down" /></div>
     </div>
   </div>
   <ul class="dropdown-menu rounded bg-white shadow-md absolute hidden container w-48 pt-1 z-50">

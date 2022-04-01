@@ -32,9 +32,11 @@ SPDX-License-Identifier: EPL-2.0 -->
 <script lang="ts">
   import AdvancedSearch from '$lib/components/AdvancedSearch.svelte'
   import ComponentHeader from '$lib/components/ComponentHeader.svelte'
-  import PageHeader from '$lib/components/PageHeader.svelte'
-  import { html } from 'gridjs'
   import Grid from 'gridjs-svelte'
+  import PageHeader from '$lib/components/PageHeader.svelte'
+  import UserActions from './UserActions.svelte'
+  import { html } from 'gridjs'
+  import { SvelteWrapper } from 'gridjs-svelte/plugins'
 
   export let userlist
 
@@ -79,7 +81,16 @@ SPDX-License-Identifier: EPL-2.0 -->
     'Primary Department',
     'Primary Department Role',
     'Secondary Department Role',
-    'Actions'
+    {
+      name: 'Actions',
+      width: '10%',
+      plugin: {
+        component: SvelteWrapper,
+        props: {
+          component: UserActions
+        }
+      }
+    }
   ]
 
   for (const value of userlist[0].userlist) {

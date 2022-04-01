@@ -7,7 +7,7 @@ which is available at https://www.eclipse.org/legal/epl-2.0/
 
 SPDX-License-Identifier: EPL-2.0 -->
 <script context="module" lang="ts">
-  export async function load({ url, fetch, session }) {
+  export async function load({ fetch, session }) {
     if (!session.user) {
       return {
         status: 302,
@@ -17,9 +17,7 @@ SPDX-License-Identifier: EPL-2.0 -->
 
     const headers = new Headers({ Endpoint: 'components' })
     const components = await Promise.all([
-      fetch(`/data/data.json${url.search}`, { credentials: 'include', headers: headers }).then(r =>
-        r.json()
-      )
+      fetch(`/data/data.json`, { credentials: 'include', headers: headers }).then(r => r.json())
     ])
 
     return {
@@ -32,10 +30,12 @@ SPDX-License-Identifier: EPL-2.0 -->
 
 <script lang="ts">
   import AdvancedSearch from '$lib/components/AdvancedSearch.svelte'
+  import ComponentActions from './ComponentActions.svelte'
   import ComponentHeader from '$lib/components/ComponentHeader.svelte'
+  import Grid from 'gridjs-svelte'
   import PageHeader from '$lib/components/PageHeader.svelte'
   import { html } from 'gridjs'
-  import Grid from 'gridjs-svelte'
+  import { SvelteWrapper } from 'gridjs-svelte/plugins'
 
   export let components
   let name = 'Components'
@@ -43,7 +43,7 @@ SPDX-License-Identifier: EPL-2.0 -->
     enabled: true,
     limit: 10
   }
-  let grid: Grid = null
+  let grid = null
 
   const search_items = [
     { title: 'Component Name', type: 'textedit', id: 'component_name' },
@@ -76,7 +76,16 @@ SPDX-License-Identifier: EPL-2.0 -->
       formatter: cell => html(`<span class="font-bold text-red-900">${cell}</span>`)
     },
     'Component type',
-    'Actions'
+    {
+      name: 'Actions',
+      width: '10%',
+      plugin: {
+        component: SvelteWrapper,
+        props: {
+          component: ComponentActions
+        }
+      }
+    }
   ]
 
   const data = []
@@ -99,7 +108,7 @@ SPDX-License-Identifier: EPL-2.0 -->
 <PageHeader {name} />
 
 <div class="sw360-gridpanel">
-  <div><AdvancedSearch items={search_items} /></div>
+  <AdvancedSearch items={search_items} />
 
   <div class="sw360-gridpanel-content-r">
     <ComponentHeader {name} {total}>
