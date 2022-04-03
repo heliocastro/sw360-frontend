@@ -12,21 +12,15 @@ SPDX-License-Identifier: EPL-2.0 -->
 
   // Workaround over the Gridjs Bug
   export let cell
-  cell = null
   export let row
-  row = null
   export let column
-  column = null
 
-  let psColor = null
-  let csColor = null
+  let psColor = 'gray-500'
+  let csColor = 'red-500'
 
   switch (state) {
     case 'ACTIVE':
       psColor = 'green-500'
-      break
-    default:
-      psColor = 'gray-500'
       break
   }
 
