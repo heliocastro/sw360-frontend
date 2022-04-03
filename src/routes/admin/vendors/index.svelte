@@ -9,7 +9,7 @@ SPDX-License-Identifier: EPL-2.0 -->
 <script context="module" lang="ts">
   export const prerender = true
 
-  export async function load({ url, fetch, session }) {
+  export async function load({ fetch, session }) {
     if (!session.user) {
       return {
         status: 302,
@@ -17,9 +17,9 @@ SPDX-License-Identifier: EPL-2.0 -->
       }
     }
 
-    url.search = new URLSearchParams({ endpoint: 'vendors' }).toString()
+    const headers = new Headers({ Endpoint: 'vendors' })
     const vendors = await Promise.all([
-      fetch(`/data/data.json${url.search}`, { credentials: 'include' }).then(r => r.json())
+      fetch(`/data/data.json`, { credentials: 'include', headers: headers }).then(r => r.json())
     ])
 
     return {
