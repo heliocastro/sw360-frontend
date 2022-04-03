@@ -65,6 +65,7 @@ SPDX-License-Identifier: EPL-2.0 -->
   const columns = [
     {
       name: 'Vendor',
+      width: '30%',
       formatter: cell => html(`<span class="font-bold text-red-900">${cell}</span>`)
     },
     {
@@ -73,12 +74,16 @@ SPDX-License-Identifier: EPL-2.0 -->
     },
     {
       name: 'Main licenses',
+      width: '20%',
       formatter: cell => html(`<span class="font-bold text-red-900">${cell}</span>`)
     },
-    'Component type',
+    {
+      name: 'Component type',
+      width: '20%'
+    },
     {
       name: 'Actions',
-      width: '10%',
+      width: '8%',
       plugin: {
         component: SvelteWrapper,
         props: {
@@ -90,12 +95,7 @@ SPDX-License-Identifier: EPL-2.0 -->
 
   const data = []
   for (const value of components[0]) {
-    data.push([
-      'NOT SUPPORTED DIRECT BY REST API',
-      value.name,
-      'NOT SUPPORTED DIRECT BY REST API',
-      value.componentType
-    ])
+    data.push(['NOT REST API', value.name, 'NOT REST API', value.componentType])
   }
   const total = data.length
 
