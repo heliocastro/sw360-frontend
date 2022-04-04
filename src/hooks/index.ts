@@ -22,7 +22,8 @@ export function getSession({ locals }) {
 				access_token: locals.user.access_token,
 				token_type: locals.user.bearer,
 				refresh_token: locals.user.refresh_token,
-                jti: locals.user.jti
+                jti: locals.user.jti,
+                scope: locals.user.scope
              }
 		};
     else {
