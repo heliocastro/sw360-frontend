@@ -25,9 +25,9 @@ SPDX-License-Identifier: EPL-2.0 -->
 
 <script lang="ts">
   import ComponentHeader from '$lib/components/ComponentHeader.svelte'
+  import Grid from 'gridjs-svelte'
   import PageHeader from '$lib/components/PageHeader.svelte'
   import QuickFilter from '$lib/components/QuickFilter.svelte'
-  import Grid from 'gridjs-svelte'
   import { html } from 'gridjs'
   import { SvelteWrapper } from 'gridjs-svelte/plugins'
 
