@@ -10,10 +10,7 @@ SPDX-License-Identifier: EPL-2.0 -->
   export let state = 'ACTIVE'
   export let clearingState = 'OPEN'
 
-  // Workaround over the Gridjs Bug
   export let cell
-  export let row
-  export let column
 
   let psColor = 'gray-500'
   let csColor = 'red-500'

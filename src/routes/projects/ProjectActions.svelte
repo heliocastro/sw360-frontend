@@ -1,13 +1,5 @@
 <script lang="ts">
   import Icon from '@iconify/svelte'
-
-  // Workaround over the Gridjs Bug
-  export let cell
-  console.log(cell)
-  export let row
-  console.log(row)
-  export let column
-  console.log(column)
 </script>
 
 <div class="flex justify-center gap-2">
