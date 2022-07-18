@@ -33,18 +33,18 @@ async function send({ method, path, data, token }) {
 		});
 }
 
-export function get(path: string, token: string) {
+export function GET(path: string, token: string) {
 	return send({ method: 'GET', path, token, data: null });
 }
 
-export function del(path: string, token: string) {
+export function DEL(path: string, token: string) {
 	return send({ method: 'DELETE', path, token, data: null });
 }
 
-export function post(path: string, data: Object, token: string) {
+export function POST(path: string, data: Object, token: string) {
 	return send({ method: 'POST', path, data, token });
 }
 
-export function put(path: string, data, token: string) {
+export function PUT(path: string, data, token: string) {
 	return send({ method: 'PUT', path, data, token });
 }

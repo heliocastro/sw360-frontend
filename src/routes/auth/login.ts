@@ -8,7 +8,7 @@
 import { respond } from './_respond';
 import { SW360_API_URL } from '$lib/env';
 
-export async function post({ request }) {
+export async function POST({ request }) {
 	const userdata = await request.json();
 
 	let url: URL = new URL(SW360_API_URL + '/authorization/client-management');

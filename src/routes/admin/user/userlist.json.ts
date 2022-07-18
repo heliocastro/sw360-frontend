@@ -7,15 +7,15 @@
 // SPDX-License-Identifier: EPL-2.0
 import * as api from '$lib/api';
 
-export async function get({ locals }) {
+export async function GET({ locals }) {
 	const endpoint = 'users';
 
-	const users = await api.get(`${endpoint}`, locals.user && locals.user.access_token);
+	const users = await api.GET(`${endpoint}`, locals.user && locals.user.access_token);
 	const userlist = [];
 
 	if (users) {
-		for (let value of users._embedded['sw360:users']) {
-			const user = await api.get(
+		for (const value of users._embedded['sw360:users']) {
+			const user = await api.GET(
 				`${endpoint}/${value.email}`,
 				locals.user && locals.user.access_token
 			);

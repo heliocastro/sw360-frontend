@@ -3,14 +3,15 @@ Copyright (c) 2022 Helio Chissini de Castro
 
 This program and the accompanying materials are made
 available under the terms of the Eclipse Public License 2.0
-which is available at https://www.eclipse.org/legal/epl-2.0/ 
+which is available at https://www.eclipse.org/legal/epl-2.0/
 
 SPDX-License-Identifier: EPL-2.0 -->
 <script lang="ts">
+  import { _ } from 'svelte-i18n'
   import { page, session } from '$app/stores'
   import NavItem from '$lib/components/NavItem.svelte'
   import NavItemDropdown from '$lib/components/NavItemDropdown.svelte'
-  import { post } from '$lib/utils'
+  import { POST } from '$lib/utils'
 
   let src = '/images/sw360.png'
   let path
@@ -19,7 +20,7 @@ SPDX-License-Identifier: EPL-2.0 -->
   $: path = $page.url.pathname
 
   async function logout() {
-    await post(`/auth/logout`, null)
+    await POST(`/auth/logout`, null)
     $session['user'] = null
   }
 </script>
@@ -40,7 +41,7 @@ SPDX-License-Identifier: EPL-2.0 -->
 
     <nav>
       {#if 'user' in $session}
-        <div class="flex items-left inline-flex gap-4" role="group">
+        <div class="flex items-left gap-4" role="group">
           <NavItem label="Home" link="/" active={path === '/'} />
           <NavItem label="Projects" link="/projects" active={path.startsWith('/projects')} />
           <NavItem label="Components" link="/components" active={path.startsWith('/components')} />

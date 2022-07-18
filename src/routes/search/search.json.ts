@@ -7,10 +7,10 @@
 // SPDX-License-Identifier: EPL-2.0
 import * as api from '$lib/api';
 
-export async function get({ url: { searchParams }, locals }) {
+export async function GET({ url: { searchParams }, locals }) {
 	const endpoint = 'search';
 
-	const search_result = await api.get(
+	const search_result = await api.GET(
 		`${endpoint}?${searchParams}`,
 		locals.user && locals.user.access_token
 	);

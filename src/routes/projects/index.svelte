@@ -7,7 +7,6 @@ which is available at https://www.eclipse.org/legal/epl-2.0/
 
 SPDX-License-Identifier: EPL-2.0 -->
 <script context="module" lang="ts">
-  export const prerender = true
 
   export async function load({ url, fetch, session }) {
     if (!session.user) {
@@ -19,15 +18,14 @@ SPDX-License-Identifier: EPL-2.0 -->
 
     let headers = new Headers({ Endpoint: 'projects' })
     url.search = new URLSearchParams({ allDetails: '1' }).toString()
-    const projects = await Promise.all([
-      fetch(`/data/data.json${url.search}`, { credentials: 'include', headers: headers }).then(r =>
-        r.json()
-      )
-    ])
+    const response = await fetch(`/data/data.json${url.search}`, {
+      credentials: 'include',
+      headers: headers
+    })
 
     return {
       props: {
-        projects
+        projects: response.ok && (await response.json())
       }
     }
   }
@@ -44,6 +42,9 @@ SPDX-License-Identifier: EPL-2.0 -->
   import { SvelteWrapper } from 'gridjs-svelte/plugins'
 
   export let projects
+
+  console.log(projects)
+
   let name = 'Projects'
   let grid
   let pagination = {
@@ -78,7 +79,9 @@ SPDX-License-Identifier: EPL-2.0 -->
       name: 'Project name',
       formatter: cell => html(`<a href='/component/${cell}'>${cell}</a>`)
     },
-    'Description',
+    {
+      name: 'Description'
+    },
     {
       name: 'Project responsible',
       formatter: cell => html(`<a href='/component/${cell}'>${cell}</a>`)
@@ -110,7 +113,7 @@ SPDX-License-Identifier: EPL-2.0 -->
   ]
 
   const data = []
-  for (const value of projects[0]) {
+  for (const value of projects) {
     data.push([
       `${value.name}(${value.version})`,
       value.description,

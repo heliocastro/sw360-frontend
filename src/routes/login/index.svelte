@@ -7,8 +7,6 @@ which is available at https://www.eclipse.org/legal/epl-2.0/
 
 SPDX-License-Identifier: EPL-2.0 -->
 <script context="module">
-  export const prerender = true
-
   export async function load({ session }) {
     if (session.user) {
       return {
@@ -16,6 +14,7 @@ SPDX-License-Identifier: EPL-2.0 -->
         redirect: '/'
       }
     }
+
     return {}
   }
 </script>
@@ -23,7 +22,7 @@ SPDX-License-Identifier: EPL-2.0 -->
 <script lang="ts">
   import { session } from '$app/stores'
   import { goto } from '$app/navigation'
-  import { post } from '$lib/utils'
+  import { POST } from '$lib/utils'
   import ListErrors from '$lib/ListErrors.svelte'
   import PageHeader from '$lib/components/PageHeader.svelte'
   import { SW360_DEV_EMAIL, SW360_DEV_PASSWORD } from '$lib/env'
@@ -34,9 +33,16 @@ SPDX-License-Identifier: EPL-2.0 -->
   let name = 'Login'
 
   async function submit() {
-    const response = await post(`auth/login`, { email, password })
+    const response = await POST(`auth/login`, { email, password })
 
     if (response) {
+      if ('scope' in response) {
+        $session['scope'] = response.scope.search('WRITE') > -1 ? true : false
+      }
+
+      console.log('----------------- TEST ----------')
+      console.log($session['user'])
+
       $session['user'] = response
       goto('/')
     }

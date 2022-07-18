@@ -7,8 +7,6 @@ which is available at https://www.eclipse.org/legal/epl-2.0/
 
 SPDX-License-Identifier: EPL-2.0 -->
 <script context="module" lang="ts">
-	export const prerender = true;
-
 	export async function load({ session }) {
 		if (!session.user) {
 			return {

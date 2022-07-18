@@ -5,7 +5,7 @@
 // which is available at https://www.eclipse.org/legal/epl-2.0/
 
 // SPDX-License-Identifier: EPL-2.0
-export function post() {
+export function POST() {
 	return {
 		headers: {
 			'set-cookie': 'sw360jwt=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT'

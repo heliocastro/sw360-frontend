@@ -7,7 +7,7 @@ which is available at https://www.eclipse.org/legal/epl-2.0/
 
 SPDX-License-Identifier: EPL-2.0 -->
 <script context="module" lang="ts">
-  export async function load({ fetch, session }) {
+  export async function load({ params, fetch, session, stuff }) {
     if (!session.user) {
       return {
         status: 302,
@@ -16,13 +16,12 @@ SPDX-License-Identifier: EPL-2.0 -->
     }
 
     const headers = new Headers({ Endpoint: 'components' })
-    const components = await Promise.all([
-      fetch(`/data/data.json`, { credentials: 'include', headers: headers }).then(r => r.json())
-    ])
+    const response = await fetch(`/data/data.json`, { credentials: 'include', headers: headers })
+    const components = response.ok && (await response.json())
 
     return {
       props: {
-        components
+        components: components
       }
     }
   }
@@ -36,8 +35,10 @@ SPDX-License-Identifier: EPL-2.0 -->
   import PageHeader from '$lib/components/PageHeader.svelte'
   import { html } from 'gridjs'
   import { SvelteWrapper } from 'gridjs-svelte/plugins'
+  import { sw360id } from '$lib/utils'
 
   export let components
+
   let name = 'Components'
   let pagination = {
     enabled: true,
@@ -70,7 +71,7 @@ SPDX-License-Identifier: EPL-2.0 -->
     },
     {
       name: 'Component name',
-      formatter: cell => html(`<a href='/component/${cell}'>${cell}</a>`)
+      formatter: cell => html(`<a href='/components/${cell.id}'>${cell.name}</a>`)
     },
     {
       name: 'Main licenses',
@@ -94,8 +95,9 @@ SPDX-License-Identifier: EPL-2.0 -->
   ]
 
   const data = []
-  for (const value of components[0]) {
-    data.push(['NOT REST API', value.name, 'NOT REST API', value.componentType])
+  for (const value of components) {
+    let nameId = { name: value.name, id: sw360id(value) }
+    data.push(['NOT REST API', nameId, 'NOT REST API', value.componentType])
   }
   const total = data.length
 

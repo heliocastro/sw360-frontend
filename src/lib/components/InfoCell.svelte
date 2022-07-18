@@ -7,7 +7,7 @@ which is available at https://www.eclipse.org/legal/epl-2.0/
 
 SPDX-License-Identifier: EPL-2.0 -->
 <div class="px-3 py-3 border border-gray-200 bg-white w-full">
-	<div class="grid grid-cols-2 grid-cols-[30%_minmax(900px,_1fr)_100%]" >
-		<slot />
-	</div>
+  <div class="grid grid-cols-[30%_minmax(900px,_1fr)_100%]">
+    <slot />
+  </div>
 </div>
