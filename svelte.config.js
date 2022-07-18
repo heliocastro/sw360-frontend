@@ -1,4 +1,3 @@
-// import adapter from '@sveltejs/adapter-node';
 import preprocess from 'svelte-preprocess';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -10,18 +9,10 @@ const config = {
 			scss: {
 				postcss: true,
 				includePaths: "src/scss"
-			}
-		})
-	],
-	kit: {
-		// adapter: adapter(),
-
-		vite: {
-			define: {
-				'process.env': process.env
 			},
-		}
-	}
+			postcss: true,
+		})
+	]
 };
 
 export default config;
