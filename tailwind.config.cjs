@@ -16,7 +16,6 @@ module.exports = {
 	},
 	plugins: [
 		require('autoprefixer'),
-		require('daisyui'),
 		require('tailwindcss'),
 		require('tailwindcss-debug-screens'),
 	]
