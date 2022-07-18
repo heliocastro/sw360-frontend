@@ -11,6 +11,7 @@
 	],
 	"extensions": [
 		"bierner.color-info", // JSX and CSS color information
+		"bradlc.vscode-tailwindcss", // Intelligent Tailwind CSS tooling
 		"christian-kohler.npm-intellisense", // Autocompletes npm modules in import statements
 		"cssho.vscode-svgviewer", // SVG viewer
 		"davidanson.vscode-markdownlint",
@@ -19,13 +20,15 @@
 		"eg2.vscode-npm-script", // NPM support for VS code
 		"esbenp.prettier-vscode", // Prettier code formatter
 		"Gruntfuggly.todo-tree", // Highlights TODO comments
+		"heybourn.headwind", // Opinionated Tailwind CSS class sorter
 		"IBM.output-colorizer", // Colorize your output/test logs
 		"jpoissonnier.vscode-styled-components", // Styled components
 		"ms-azuretools.vscode-docker", // Docker integration and linting
 		"shardulm94.trailing-spaces", // Show trailing spaces
 		"stkb.rewrap", // rewrap comments after n characters on one line
 		"svelte.svelte-vscode", // Svelte default
-		"visualstudioexptteam.vscodeintellicode" // AI-assisted development
+		"urbantrout.refactor-css", // Helps identify reoccuring CSS class name combinations in markup
+		"visualstudioexptteam.vscodeintellicode", // AI-assisted development
 	],
 	"settings": {
 		"files.eol": "\n",
@@ -42,24 +45,22 @@
 			"typescript",
 			"typescriptreact"
 		],
-		"editor.formatOnSave": true,
 		"[javascript]": {
 			"editor.defaultFormatter": "esbenp.prettier-vscode",
-			"editor.formatOnSave": false
-		},
-		"[javascriptreact]": {
-			"editor.defaultFormatter": "esbenp.prettier-vscode",
-			"editor.formatOnSave": false
+			"editor.tabSize": 2
 		},
 		"[typescript]": {
 			"editor.defaultFormatter": "esbenp.prettier-vscode",
-			"editor.formatOnSave": false
 		},
-		"[typescriptreact]": {
-			"editor.defaultFormatter": "esbenp.prettier-vscode",
-			"editor.formatOnSave": false
+		"[svelte]": {
+			"editor.tabSize": 2,
+			"editor.defaultFormatter": "svelte.svelte-vscode",
+			"editor.formatOnSave": true
 		},
+		"editor.insertSpaces": true,
 		"prettier-eslint.eslintIntegration": true
 	},
-	"remoteUser": "devel"
+	"remoteUser": "devel",
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "yarn install",
 }
