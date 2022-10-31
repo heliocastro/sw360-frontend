@@ -14,17 +14,18 @@ dist-ssr
 
 # Editor directories and files
 .vscode/*
+!.env.example
 !.vscode/extensions.json
-.idea
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-/build
-/.svelte-kit
-/package
 .env
 .env.*
-!.env.example
+.idea
+*.njsproj
+*.ntvs*
+*.sln
+*.suo
+*.sw?
+/.svelte-kit
+/build
+/node_modules
+/package

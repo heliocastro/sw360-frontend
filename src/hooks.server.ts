@@ -6,6 +6,8 @@
 
 // SPDX-License-Identifier: EPL-2.0
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import * as cookie from 'cookie';
 
 export async function handle({ event, resolve }) {
@@ -13,20 +15,4 @@ export async function handle({ event, resolve }) {
     const sw360jwt = cookies.sw360jwt && Buffer.from(cookies.sw360jwt, 'base64').toString('utf-8');
     event.locals.user = sw360jwt ? JSON.parse(sw360jwt) : null;
     return await resolve(event);
-}
-
-export function getSession({ locals }) {
-    if(locals.user)
-         return {
-             user: {
-				access_token: locals.user.access_token,
-				token_type: locals.user.bearer,
-				refresh_token: locals.user.refresh_token,
-                jti: locals.user.jti,
-                scope: locals.user.scope
-             }
-		};
-    else {
-        return {};
-    }
 }

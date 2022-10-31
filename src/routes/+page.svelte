@@ -6,27 +6,15 @@ available under the terms of the Eclipse Public License 2.0
 which is available at https://www.eclipse.org/legal/epl-2.0/
 
 SPDX-License-Identifier: EPL-2.0 -->
-<script context="module" lang="ts">
-  export async function load({ session }) {
-    if (!session.user) {
-      return {
-        status: 302,
-        redirect: '/login'
-      }
-    }
-    return {}
-  }
-</script>
-
 <script lang="ts">
   import Grid from 'gridjs-svelte'
   import PageHeader from '$lib/components/PageHeader.svelte'
   import { html } from 'gridjs'
 
-  let projects_data = []
-  let assignment_data = []
-  let components_data = []
-  let submission_data = []
+  let projects_data: any = []
+  let assignment_data: any = []
+  let components_data: any = []
+  let submission_data: any = []
 
   const projects_columns = [
     { name: 'Project Name', width: '35%', formatter: cell => html(cell) },
